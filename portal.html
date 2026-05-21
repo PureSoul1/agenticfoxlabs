@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal | Agentic Fox Labs</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/app.js" defer></script>
+  <style>
+    :root {
+      --bg-color: #f8fafc;
+      --surface-color: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --brand-color: #334155;
+    }
+    body { font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; }
+    .navbar { background: var(--surface-color); padding: 16px 32px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+    .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .card { background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+    .btn { background: var(--brand-color); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 500; }
+    .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+    .btn-launch { background: #f97316; color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-block; }
+    .status-badge { background: #e2e8f0; color: #334155; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div style="font-weight: 700; font-size: 18px;">Agentic Fox Labs</div>
+    <button class="btn btn-outline" onclick="handleLogout()">Sign Out</button>
+  </nav>
+
+  <div class="container">
+    <h2>Welcome back, <span id="userName">User</span></h2>
+    <p style="color: var(--text-muted); margin-bottom: 32px;">Manage your ERP subscriptions and deployments.</p>
+
+    <div class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+        <h3 style="margin: 0;">Subscription Status</h3>
+        <span class="status-badge" id="subBadge">Checking...</span>
+      </div>
+      <div id="subContent">
+        <p style="color: var(--text-muted);">Loading your subscription data...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = await checkAuth();
+      if (!session) {
+        window.location.href = '/login.html'; 
+        return;
+      }
+      
+      document.getElementById('userName').textContent = session.user.email.split('@')[0];
+      loadUserDashboard(session);
+    });
+
+    async function loadUserDashboard(session) {
+      try {
+        const { data: subData, error } = await sbClient
+          .from('subscriptions')
+          .select('*')
+          .eq('user_id', session.user.id)
+          .eq('status', 'active')
+          .single();
+
+        const badge = document.getElementById('subBadge');
+        const content = document.getElementById('subContent');
+
+        if (subData) {
+          badge.textContent = `Active: ${subData.plan.toUpperCase()}`;
+          badge.style.background = '#dcfce7';
+          badge.style.color = '#16a34a';
+          
+          content.innerHTML = `
+            <p style="color: var(--text-muted); margin-bottom: 20px;">Your enterprise platform is active and ready to use.</p>
+            <a href="https://your-app-subdomain.agenticfoxlabs.com" target="_blank" class="btn-launch">Launch Platform</a>
+            <button class="btn btn-outline" style="margin-left: 12px;">Manage Billing</button>
+          `;
+        } else {
+          badge.textContent = 'No Active Plan';
+          content.innerHTML = `
+            <p style="color: var(--text-muted); margin-bottom: 20px;">You do not have any active paid subscriptions yet.</p>
+            <button class="btn" onclick="window.location.href='/index.html#pricing'">View Pricing Plans</button>
+          `;
+        }
+      } catch(e) {
+        console.error("Dashboard fetch error:", e);
+      }
+    }
+  </script>
+</body>
+</html>
