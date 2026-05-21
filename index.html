@@ -1184,8 +1184,8 @@ ul{list-style:none}
     <div class="pricing-grid stagger-parent">
       <div class="stagger-child pricing-card">
         <div class="pricing-name">Monthly</div>
-        <div class="pricing-price" style="font-size:28px;">Contact Us</div>
-        <div class="pricing-save">&nbsp;</div>
+        <div class="pricing-price" style="font-size:36px;">₹999<span style="font-size:16px;font-weight:500;color:var(--slate-400);">/mo</span></div>
+        <div class="pricing-save" style="color:transparent;">&nbsp;</div>
         <ul class="pricing-features">
           <li><i class="fa-solid fa-check"></i> 1 ERP of Your Choice</li>
           <li><i class="fa-solid fa-check"></i> Unlimited Users</li>
@@ -1198,8 +1198,8 @@ ul{list-style:none}
       <div class="stagger-child pricing-card popular">
         <span class="pricing-badge">BEST VALUE</span>
         <div class="pricing-name">Yearly</div>
-        <div class="pricing-price" style="font-size:28px;">Contact Us</div>
-        <div class="pricing-save">Save $9 vs monthly</div>
+        <div class="pricing-price" style="font-size:36px;">₹9,990<span style="font-size:16px;font-weight:500;color:var(--slate-400);">/yr</span></div>
+        <div class="pricing-save">Save ₹1,998 a year</div>
         <ul class="pricing-features">
           <li><i class="fa-solid fa-check"></i> 1 ERP of Your Choice</li>
           <li><i class="fa-solid fa-check"></i> Unlimited Users</li>
@@ -1211,8 +1211,8 @@ ul{list-style:none}
       </div>
       <div class="stagger-child pricing-card">
         <div class="pricing-name">3 Years</div>
-        <div class="pricing-price" style="font-size:28px;">Contact Us</div>
-        <div class="pricing-save">Save $75 total</div>
+        <div class="pricing-price" style="font-size:36px;">₹24,999<span style="font-size:16px;font-weight:500;color:var(--slate-400);">/3 yrs</span></div>
+        <div class="pricing-save">Save ₹10,965 total</div>
         <ul class="pricing-features">
           <li><i class="fa-solid fa-check"></i> 1 ERP of Your Choice</li>
           <li><i class="fa-solid fa-check"></i> Unlimited Users</li>
@@ -1577,7 +1577,7 @@ function init(){const h=location.hash.slice(1);showPage(h&&document.getElementBy
 window.addEventListener('load',init);
 
 // ===== FOX AI CHATBOT =====
-const WORKER_URL = 'https://fox-ai-bot.abhaypawan01.workers.dev';
+const WORKER_URL = 'https://agentic-fox-worker.abhaypawan01.workers.dev/api/chat';
 let foxOpen = false;
 let foxTyping = false;
 
