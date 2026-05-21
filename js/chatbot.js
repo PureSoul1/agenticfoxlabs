@@ -1,7 +1,6 @@
 // frontend/js/chatbot.js
 
-const CHAT_API_URL = 'https://api.agenticfoxlabs.com/api/chat'; // Replace with your Worker URL
-let foxOpen = false;
+const CHAT_API_URL = 'https://agentic-fox-worker.abhaypawan01.workers.dev/api/chat';let foxOpen = false;
 let foxTyping = false;
 
 document.addEventListener('DOMContentLoaded', () => {
