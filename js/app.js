@@ -1,8 +1,10 @@
 // frontend/js/app.js
 
 // TODO: Replace with your actual Supabase URL and Anon Key
-const SUPABASE_URL = 'https://your-project.supabase.co';
-const SUPABASE_ANON_KEY = 'your-anon-key';
+// Isko aise change kar de:
+const SUPABASE_URL = 'https://eexspkylrofbzsxgqohf.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_5PR-1-3RK4XsjP-ARNdqcQ_o72irDQw'; 
+// (Jo tune pichle step me copy ki thi)
 
 // Initialize Supabase via CDN (No NPM/Webpack needed)
 const { createClient } = supabase;
