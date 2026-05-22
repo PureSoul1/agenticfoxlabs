@@ -1,25 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Successful | Agentic Fox Labs</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; background-color: #f8fafc; color: #1e293b; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-    .card { background: #ffffff; padding: 48px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; max-width: 400px; }
-    .icon { width: 64px; height: 64px; background: #dcfce7; color: #16a34a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; }
-    h1 { font-size: 24px; font-weight: 800; margin-bottom: 12px; color: #0f172a; }
-    p { font-size: 15px; color: #64748b; line-height: 1.6; margin-bottom: 32px; }
-    .btn { background: #334155; color: white; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 14px; display: inline-block; transition: background 0.2s; }
-    .btn:hover { background: #0f172a; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Successful | Agentic Fox Labs</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+<!-- PWA Meta -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#f97316">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBFCDRPV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0HSCCSBL45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0HSCCSBL45', { anonymize_ip: true });
+</script>
+
+<!-- External Resources -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/animations.css">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
+
+<style>
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #f8fafc 0%, #fff7ed 100%);
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  .card {
+    background: #ffffff;
+    padding: 48px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    text-align: center;
+    max-width: 440px;
+    width: 90%;
+  }
+
+  /* Animated Checkmark */
+  .checkmark-circle {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 28px;
+    position: relative;
+  }
+  .checkmark-circle svg {
+    width: 80px;
+    height: 80px;
+  }
+  .checkmark-circle .circle {
+    stroke: #22c55e;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-linecap: round;
+    animation: circleStroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+  .checkmark-circle .check {
+    stroke: #22c55e;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: checkStroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+  }
+  @keyframes circleStroke {
+    0% { stroke-dashoffset: 166; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes checkStroke {
+    0% { stroke-dashoffset: 48; }
+    100% { stroke-dashoffset: 0; }
+  }
+
+  .card h1 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #0f172a;
+  }
+  .card p {
+    font-size: 15px;
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .btn {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 14px rgba(249,115,22,0.3);
+  }
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(249,115,22,0.4);
+  }
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="icon">✓</div>
-    <h1>Payment Successful</h1>
-    <p>Your transaction has been securely processed. We are provisioning your enterprise workspace. You will receive an invoice via email shortly.</p>
-    <a href="/portal.html" class="btn">Proceed to Dashboard</a>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBFCDRPV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="card" role="main">
+  <div class="checkmark-circle">
+    <svg viewBox="0 0 52 52">
+      <circle class="circle" cx="26" cy="26" r="25"/>
+      <path class="check" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+    </svg>
   </div>
+  <h1>Payment Successful</h1>
+  <p>Your transaction has been securely processed. We are provisioning your enterprise workspace. You will receive an invoice via email shortly.</p>
+  <a href="./portal.html" class="btn">Proceed to Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+</div>
+
 </body>
 </html>

@@ -1,90 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Admin Area | Agentic Fox Labs</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/js/app.js" defer></script>
-  <style>
-    /* Global SaaS Admin Theme */
-    body { font-family: system-ui; background: #f1f5f9; color: #1e293b; margin: 0; }
-    .header { background: #ffffff; padding: 20px; border-bottom: 1px solid #e2e8f0; }
-    .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-    
-    table { width: 100%; border-collapse: collapse; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
-    th, td { padding: 16px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
-    th { background: #f8fafc; font-weight: 600; color: #64748b; }
-    
-    .status-new { background: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-    .status-contacted { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Area | Agentic Fox Labs</title>
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+<!-- PWA Meta -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#f97316">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBFCDRPV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0HSCCSBL45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0HSCCSBL45', { anonymize_ip: true });
+</script>
+
+<!-- External Resources -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/animations.css">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
+
+<style>
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #f1f5f9; color: #1e293b; margin: 0; }
+  .header { background: #ffffff; padding: 20px 32px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+  .header-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .header-brand img { width: 32px; height: 32px; border-radius: 8px; }
+  .header-brand span { font-weight: 800; font-size: 18px; color: #1e293b; }
+  .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+  table { width: 100%; border-collapse: collapse; background: #ffffff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
+  th, td { padding: 16px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+  th { background: #f8fafc; font-weight: 600; color: #64748b; }
+  .status-new { background: #fee2e2; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  .status-contacted { background: #dbeafe; color: #1e40af; padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  .unauthorized { text-align: center; padding: 80px 20px; }
+  .unauthorized h2 { color: #991b1b; font-size: 24px; margin-bottom: 12px; }
+  .unauthorized p { color: #64748b; margin-bottom: 24px; }
+  .unauthorized a { color: #f97316; font-weight: 700; text-decoration: none; }
+</style>
 </head>
 <body>
 
-  <div class="header">
-    <h2 style="margin:0;">System Administration</h2>
-  </div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBFCDRPV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-  <div class="container">
-    <h3 style="margin-bottom: 20px;">Recent Demo Requests</h3>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Interest</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody id="leadsTableBody">
-        <tr>
-          <td colspan="6" style="text-align: center;">Loading data...</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="header" role="banner">
+  <a href="./index.html" class="header-brand">
+    <img src="./assets/favicon.png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+    <span>System Administration</span>
+  </a>
+  <a href="./index.html" style="font-size:13px;color:#64748b;text-decoration:none;font-weight:600;"><i class="fa-solid fa-arrow-left"></i> Back to Site</a>
+</div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const session = await checkAuth();
-      // Basic protection - abhi ke liye email hardcode, backend pe bhi verify karna hoga
-      if (!session || (session.user.email !== 'admin@agenticfoxlabs.com' && session.user.email !== 'your.email@gmail.com')) {
-        document.body.innerHTML = "<h2 style='padding:40px; text-align:center;'>Unauthorized Access</h2>";
-        return;
-      }
+<div class="container" id="adminContent" role="main">
+  <h3 style="margin-bottom: 20px;">Recent Demo Requests</h3>
 
-      fetchLeads();
-    });
+  <table aria-label="Demo requests table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Interest</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="leadsTableBody">
+      <tr>
+        <td colspan="6" style="text-align: center;">Loading data...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-    async function fetchLeads() {
-      // TODO: Replace with actual Worker API call later
-      // const res = await fetch('/api/admin/stats', { headers: { Authorization: `Bearer ${session.access_token}` }});
-      
-      // Fake data for UI testing phase 1
-      const fakeData = [
-        { date: '2026-05-21', name: 'Rahul Sharma', email: 'rahul@school.com', interest: 'School ERP', status: 'new' },
-        { date: '2026-05-20', name: 'Dr. Verma', email: 'verma@clinic.in', interest: 'Clinic ERP', status: 'contacted' }
-      ];
+<script src="./js/app.js" defer></script>
+<script>
+  // Fix for checkAuth missing if app.js fails to load
+  if (typeof checkAuth === 'undefined') {
+    window.checkAuth = async function() { return null; };
+  }
 
-      const tbody = document.getElementById('leadsTableBody');
-      tbody.innerHTML = '';
-
-      fakeData.forEach(lead => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${lead.date}</td>
-          <td>${lead.name}</td>
-          <td>${lead.email}</td>
-          <td>${lead.interest}</td>
-          <td><span class="status-${lead.status}">${lead.status.toUpperCase()}</span></td>
-          <td><button style="cursor:pointer; padding:4px 8px; border:1px solid #cbd5e1; background:#fff;">Update</button></td>
-        `;
-        tbody.appendChild(tr);
-      });
+  document.addEventListener('DOMContentLoaded', async () => {
+    const session = await checkAuth();
+    if (!session || (session.user.email !== 'admin@agenticfoxlabs.com' && session.user.email !== 'your.email@gmail.com')) {
+      document.getElementById('adminContent').innerHTML = '<div class="unauthorized"><h2>🚫 Unauthorized Access</h2><p>You do not have permission to view this page.</p><a href="./index.html">Return to Home</a></div>';
+      return;
     }
-  </script>
+
+    fetchLeads();
+  });
+
+  async function fetchLeads() {
+    // TODO: Replace with actual Worker API call later
+    const fakeData = [
+      { date: '2026-05-21', name: 'Rahul Sharma', email: 'rahul@school.com', interest: 'School ERP', status: 'new' },
+      { date: '2026-05-20', name: 'Dr. Verma', email: 'verma@clinic.in', interest: 'Clinic ERP', status: 'contacted' }
+    ];
+
+    const tbody = document.getElementById('leadsTableBody');
+    tbody.innerHTML = '';
+
+    fakeData.forEach(lead => {
+      const tr = document.createElement('tr');
+      tr.innerHTML =
+        '<td>' + lead.date + '</td>' +
+        '<td>' + lead.name + '</td>' +
+        '<td>' + lead.email + '</td>' +
+        '<td>' + lead.interest + '</td>' +
+        '<td><span class="status-' + lead.status + '">' + lead.status.toUpperCase() + '</span></td>' +
+        '<td><button style="cursor:pointer; padding:4px 8px; border:1px solid #cbd5e1; background:#fff; border-radius:4px; font-family:inherit;">Update</button></td>';
+      tbody.appendChild(tr);
+    });
+  }
+</script>
 </body>
 </html>

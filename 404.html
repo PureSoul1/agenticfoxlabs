@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | Agentic Fox Labs</title>
+<meta name="description" content="The page you're looking for doesn't exist. Return to Agentic Fox Labs home page.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+<!-- PWA Meta -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#f97316">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBFCDRPV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0HSCCSBL45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0HSCCSBL45', { anonymize_ip: true });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
+
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  /* Animated background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(249,115,22,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,115,22,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+
+  .error-container {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+  }
+
+  /* Glitch effect on 404 */
+  .glitch {
+    font-size: 120px;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    position: relative;
+    text-shadow: 0 0 20px rgba(249,115,22,0.3);
+    animation: glitchText 3s infinite;
+  }
+  .glitch::before,
+  .glitch::after {
+    content: '404';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  .glitch::before {
+    color: #f97316;
+    z-index: -1;
+    animation: glitch1 2s infinite;
+  }
+  .glitch::after {
+    color: #3b82f6;
+    z-index: -2;
+    animation: glitch2 2.5s infinite;
+  }
+
+  @keyframes glitch1 {
+    0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+    5% { clip-path: inset(20% 0 60% 0); transform: translate(-4px, 2px); }
+    10% { clip-path: inset(50% 0 30% 0); transform: translate(4px, -2px); }
+    15% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+    50% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+    55% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, 1px); }
+    60% { clip-path: inset(0 0 95% 0); transform: translate(0); }
+  }
+  @keyframes glitch2 {
+    0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+    8% { clip-path: inset(60% 0 20% 0); transform: translate(4px, -2px); }
+    12% { clip-path: inset(30% 0 40% 0); transform: translate(-4px, 2px); }
+    16% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+    45% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+    52% { clip-path: inset(40% 0 30% 0); transform: translate(3px, -1px); }
+    56% { clip-path: inset(95% 0 0 0); transform: translate(0); }
+  }
+  @keyframes glitchText {
+    0%, 100% { text-shadow: 0 0 20px rgba(249,115,22,0.3); }
+    5% { text-shadow: -3px 0 #f97316, 3px 0 #3b82f6; }
+    10% { text-shadow: 0 0 20px rgba(249,115,22,0.3); }
+    50% { text-shadow: 0 0 20px rgba(249,115,22,0.3); }
+    55% { text-shadow: 2px 0 #f97316, -2px 0 #3b82f6; }
+    60% { text-shadow: 0 0 20px rgba(249,115,22,0.3); }
+  }
+
+  .fox-emoji {
+    font-size: 48px;
+    margin-bottom: 24px;
+    display: inline-block;
+    animation: foxBounce 2s ease-in-out infinite;
+  }
+  @keyframes foxBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .error-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+  .error-desc {
+    font-size: 16px;
+    color: #94a3b8;
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .error-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform .2s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(249,115,22,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(249,115,22,0.4);
+  }
+  .btn-secondary {
+    border: 2px solid #475569;
+    color: #e2e8f0;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 32px;
+    border-radius: 14px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-secondary:hover {
+    border-color: #f97316;
+    color: #f97316;
+  }
+
+  .help-text {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 32px;
+  }
+  .help-text a {
+    color: #f97316;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .help-text a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    .glitch { font-size: 80px; }
+    .glitch::before, .glitch::after { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBFCDRPV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="error-container">
+  <div class="fox-emoji">🦊</div>
+  <div class="glitch">404</div>
+  <h1 class="error-title">Page Not Found</h1>
+  <p class="error-desc">Looks like this page wandered off the grid. Even our Fox AI couldn't track it down. Let's get you back to somewhere useful.</p>
+  <div class="error-actions">
+    <a href="./index.html" class="btn-primary"><i class="fa-solid fa-home"></i> Back to Home</a>
+    <a href="./demo.html" class="btn-secondary"><i class="fa-solid fa-calendar-check"></i> Book a Demo</a>
+  </div>
+  <p class="help-text">Need help? <a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer">WhatsApp us</a> or <a href="mailto:admin@agenticfoxlabs.com">email support</a></p>
+</div>
+
+<script>
+  // Minimal inline scripts for 404 page (standalone, no external JS dependencies)
+  // Fix for FontAwesome if not loaded
+  if (typeof FontAwesome === 'undefined') {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css';
+    document.head.appendChild(link);
+  }
+</script>
+</body>
+</html>

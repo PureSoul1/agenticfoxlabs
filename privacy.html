@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Agentic Fox Labs</title>
+<meta name="description" content="Privacy Policy for Agentic Fox Labs. Learn how we collect, use, and protect your data.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://agenticfoxlabs.com/privacy.html">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+<!-- PWA Meta -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#f97316">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBFCDRPV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0HSCCSBL45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0HSCCSBL45', { anonymize_ip: true });
+</script>
+
+<!-- External Resources -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/animations.css">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBFCDRPV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div id="scrollProgress"></div>
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="./index.html" class="nav-logo">
+      <img src="./assets/favicon.png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand">Agentic Fox Labs</span>
+        <span class="tag">AI-Powered Solutions</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="./index.html" data-page="home">Home</a>
+      <a href="./products.html" data-page="products">Products</a>
+      <a href="./pricing.html" data-page="pricing">Pricing</a>
+      <a href="./whyus.html" data-page="whyus">Why Us</a>
+      <a href="./login.html" id="loginBtn" style="font-weight:700;color:var(--slate-800)">Sign In</a>
+      <a href="./portal.html" id="portalBtn" style="display:none;font-weight:700;color:var(--orange)">Dashboard</a>
+      <a href="./demo.html" class="nav-cta magnetic-btn">Book Free Demo</a>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html"><i class="fa-solid fa-home"></i> Home</a>
+  <a href="./products.html"><i class="fa-solid fa-grid-2"></i> Products</a>
+  <a href="./pricing.html"><i class="fa-solid fa-tag"></i> Pricing</a>
+  <a href="./whyus.html"><i class="fa-solid fa-star"></i> Why Us</a>
+  <a href="./login.html" id="mobileLoginBtn"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+  <a href="./portal.html" id="mobilePortalBtn" style="display:none"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+  <a href="./demo.html" class="mobile-cta"><i class="fa-solid fa-calendar-check"></i> Book Free Demo</a>
+</div>
+
+<!-- PAGE HEADER -->
+<section class="section section-dark" style="padding:140px 24px 60px">
+  <div class="section-container" style="position:relative;z-index:2">
+    <div class="section-header reveal">
+      <h2 class="section-title">Privacy Policy</h2>
+      <p class="section-desc">Last updated: March 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY CONTENT -->
+<section class="section">
+  <div class="section-container" style="max-width:800px">
+    <div class="reveal" style="font-size:15px;color:var(--slate-600);line-height:1.8">
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">1. Information We Collect</h3>
+      <p>We collect information you provide directly to us, such as when you create an account, make a purchase, contact us, or participate in any interactive features of our services. This may include:</p>
+      <ul style="margin:12px 0 12px 20px;list-style:disc">
+        <li>Name, email address, and phone number</li>
+        <li>Business name and industry</li>
+        <li>Billing and payment information</li>
+        <li>Any information you choose to provide in demo requests or support inquiries</li>
+      </ul>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">2. How We Use Your Information</h3>
+      <p>We use the information we collect to:</p>
+      <ul style="margin:12px 0 12px 20px;list-style:disc">
+        <li>Provide, maintain, and improve our ERP and SaaS services</li>
+        <li>Process transactions and send related information</li>
+        <li>Send you technical notices, updates, security alerts, and support messages</li>
+        <li>Respond to your comments, questions, and customer service requests</li>
+        <li>Monitor and analyze trends, usage, and activities in connection with our services</li>
+        <li>Detect, investigate, and prevent fraudulent transactions and other illegal activities</li>
+      </ul>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">3. Data Storage & Security</h3>
+      <p>We implement bank-grade 256-bit encryption for all data in transit and at rest. Your data is stored on secure Google Firebase servers with daily automated backups and global redundancy. We are ISO certified and maintain strict access controls to protect your information.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">4. Third-Party Services</h3>
+      <p>We may use third-party services such as Google Analytics, Google Tag Manager, Supabase, and payment processors (Stripe) to help us operate our services. These third parties have their own privacy policies, and we encourage you to review them.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">5. Cookies</h3>
+      <p>We use cookies and similar tracking technologies to track activity on our service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">6. Data Retention</h3>
+      <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. Upon account cancellation, we retain your data for 30 days to allow for data export before permanent deletion.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">7. Your Rights</h3>
+      <p>You have the right to:</p>
+      <ul style="margin:12px 0 12px 20px;list-style:disc">
+        <li>Access the personal data we hold about you</li>
+        <li>Request correction of inaccurate data</li>
+        <li>Request deletion of your personal data</li>
+        <li>Object to processing of your personal data</li>
+        <li>Request data portability</li>
+        <li>Withdraw consent at any time</li>
+      </ul>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">8. Children's Privacy</h3>
+      <p>Our service does not address anyone under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">9. Changes to This Policy</h3>
+      <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+
+      <h3 style="font-size:20px;font-weight:700;color:var(--slate-900);margin:32px 0 16px">10. Contact Us</h3>
+      <p>If you have any questions about this Privacy Policy, please contact us:</p>
+      <ul style="margin:12px 0 12px 20px;list-style:none">
+        <li><strong>Email:</strong> <a href="mailto:admin@agenticfoxlabs.com" style="color:var(--orange)">admin@agenticfoxlabs.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+919452200700" style="color:var(--orange)">+91 94522 00700</a></li>
+        <li><strong>Address:</strong> Rajajipuram, Lucknow, India - 226017</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="./assets/favicon.png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+          <span>Agentic Fox Labs</span>
+        </div>
+        <p class="footer-desc">AI-first SaaS & ERP solutions for businesses worldwide. Automate, scale, and grow with confidence.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/agenticfoxlabs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/116364441/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          <li><a href="./products.html">School ERP</a></li>
+          <li><a href="./products.html">Hospital ERP</a></li>
+          <li><a href="./products.html">Real Estate ERP</a></li>
+          <li><a href="./products.html">Construction ERP</a></li>
+          <li><a href="./products.html">Business ERP</a></li>
+          <li><a href="./products.html">Custom SaaS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="./whyus.html">Why Agentic Fox Labs</a></li>
+          <li><a href="./pricing.html">Pricing Plans</a></li>
+          <li><a href="./demo.html">Book a Demo</a></li>
+          <li><a href="./privacy.html">Privacy Policy</a></li>
+          <li><a href="./terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:admin@agenticfoxlabs.com">admin@agenticfoxlabs.com</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+919452200700">+91 94522 00700</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><span>Rajajipuram, Lucknow, India - 226017</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear"></span> Agentic Fox Labs. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919452200700?text=Hi%20Agentic%20Fox%20Labs!%20I%20want%20to%20know%20more%20about%20your%20ERP%20and%20SaaS%20solutions." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie-consent" id="cookieConsent" style="position:fixed;bottom:0;left:0;right:0;background:var(--slate-900);color:#fff;padding:20px 24px;z-index:10000;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;">
+  <p style="font-size:14px;color:var(--slate-300);margin:0;flex:1;">🍪 We use cookies to improve your experience. By continuing, you agree to our <a href="./privacy.html" style="color:var(--orange);text-decoration:underline;">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:10px;">
+    <button onclick="acceptCookies()" style="background:var(--orange);color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:var(--slate-400);border:1px solid var(--slate-600);padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px;">Decline</button>
+  </div>
+</div>
+
+<script src="./js/app.js" defer></script>
+<script src="./js/main.js" defer></script>
+<script src="./js/chatbot.js" defer></script>
+</body>
+</html>

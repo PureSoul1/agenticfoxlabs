@@ -1,0 +1,147 @@
+/* ============================================================
+   Agentic Fox Labs — Animations & 3D/Motion Enhancement Styles
+   Neural effects, 3D cards, glassmorphism, parallax, cursors,
+   morphing, typing, skeleton, cookie consent, 404, page headers,
+   enhanced reveals, print styles
+   ============================================================ */
+
+/* ===== NEURAL INTELLIGENCE EFFECT ===== */
+.neural-bg{position:absolute;inset:0;pointer-events:none;z-index:1}
+
+/* ===== 3D MOTION CARDS ===== */
+.card-3d{perspective:1000px;transform-style:preserve-3d;transition:transform 0.4s ease}
+.card-3d:hover{will-change:transform}
+.card-3d::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,0.15) 45%,rgba(255,255,255,0.05) 50%,transparent 55%);opacity:0;transition:opacity 0.4s ease;pointer-events:none;z-index:2}
+.card-3d:hover::before{opacity:1}
+
+.card-3d-float{animation:cardFloat 6s ease-in-out infinite}
+@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+/* ===== MORPHING SHAPES ===== */
+.morph-blob{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;animation:morphBlob 8s ease-in-out infinite}
+.morph-blob-1{animation-duration:8s}
+.morph-blob-2{animation-duration:12s;animation-delay:-4s}
+@keyframes morphBlob{
+  0%{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%}
+  25%{border-radius:30% 60% 70% 40% / 50% 60% 30% 60%}
+  50%{border-radius:50% 60% 30% 60% / 30% 60% 70% 40%}
+  75%{border-radius:60% 30% 60% 40% / 70% 40% 50% 60%}
+  100%{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%}
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2)}
+.glass-card{backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:20px;padding:24px}
+
+/* ===== GRADIENT ANIMATIONS ===== */
+.gradient-text-animate{background:linear-gradient(135deg,var(--orange),var(--amber),var(--purple),var(--orange));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+.gradient-border{position:relative;border:none;background-clip:padding-box}
+.gradient-border::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:linear-gradient(135deg,var(--orange),var(--amber),var(--purple),var(--orange));background-size:300% 300%;animation:gradientShift 4s ease infinite;z-index:-1}
+.gradient-border::after{content:'';position:absolute;inset:0;border-radius:inherit;background:inherit;z-index:-1}
+
+/* ===== PARALLAX ===== */
+.parallax-layer{will-change:transform;transition:transform 0.1s linear}
+
+/* ===== CURSOR GLOW ===== */
+.cursor-glow{position:fixed;pointer-events:none;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,0.3),transparent);z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+
+/* ===== MAGNETIC BUTTONS ===== */
+.magnetic-btn{transition:transform 0.2s ease-out}
+.magnetic-btn:hover{will-change:transform}
+
+/* ===== TYPING EFFECT ===== */
+.typing-cursor{display:inline-block;width:3px;height:1em;background:var(--orange);animation:blink 0.7s step-end infinite;margin-left:2px;vertical-align:text-bottom}
+@keyframes blink{50%{opacity:0}}
+
+/* ===== LOADING / SKELETON ===== */
+.skeleton{background:linear-gradient(90deg,var(--slate-100) 25%,var(--slate-200) 50%,var(--slate-100) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* (shimmer keyframe already in style.css for prod-card.featured — this one is for skeleton) */
+
+/* ===== COOKIE CONSENT (Animation Extras) ===== */
+.cookie-consent{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:#fff;border-top:2px solid var(--orange);padding:20px 24px;transform:translateY(100%);transition:transform 0.4s ease;box-shadow:0 -4px 20px rgba(0,0,0,.1)}
+.cookie-consent.show{transform:translateY(0)}
+.cookie-consent-content{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.cookie-consent-actions{display:flex;gap:12px;flex-shrink:0}
+.cookie-consent-btn{padding:10px 24px;border-radius:10px;font-weight:700;cursor:pointer;border:none;font-size:14px;font-family:inherit;transition:all .2s}
+.cookie-consent-btn.accept{background:var(--orange);color:#fff}
+.cookie-consent-btn.accept:hover{background:var(--orange-dark);transform:translateY(-1px)}
+.cookie-consent-btn.decline{background:var(--slate-100);color:var(--slate-600)}
+.cookie-consent-btn.decline:hover{background:var(--slate-200)}
+.cookie-consent p{font-size:14px;color:var(--slate-600);line-height:1.6;flex:1}
+
+/* ===== 404 PAGE ===== */
+.error-page{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--slate-50);padding:24px}
+.error-page-content{max-width:480px}
+.error-page .error-code{margin-bottom:24px}
+.error-page h1{font-size:24px;font-weight:800;color:var(--slate-900);margin-bottom:12px}
+.error-page p{font-size:16px;color:var(--slate-500);margin-bottom:32px;line-height:1.6}
+.error-page .btn-primary{display:inline-flex}
+
+.glitch-text{position:relative;font-size:120px;font-weight:800;color:var(--slate-900);line-height:1}
+.glitch-text::before,.glitch-text::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+.glitch-text::before{color:var(--orange);animation:glitch-1 2s infinite linear alternate-reverse;clip-path:polygon(0 0,100% 0,100% 45%,0 45%)}
+.glitch-text::after{color:var(--blue);animation:glitch-2 2s infinite linear alternate-reverse;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%)}
+@keyframes glitch-1{
+  0%{transform:translate(0)}
+  20%{transform:translate(-3px,3px)}
+  40%{transform:translate(-3px,-3px)}
+  60%{transform:translate(3px,3px)}
+  80%{transform:translate(3px,-3px)}
+  100%{transform:translate(0)}
+}
+@keyframes glitch-2{
+  0%{transform:translate(0)}
+  20%{transform:translate(3px,-3px)}
+  40%{transform:translate(3px,3px)}
+  60%{transform:translate(-3px,-3px)}
+  80%{transform:translate(-3px,3px)}
+  100%{transform:translate(0)}
+}
+
+/* ===== ENHANCED REVEAL ANIMATIONS ===== */
+.reveal-3d{opacity:0;transform:perspective(800px) rotateX(10deg) translateY(40px);transition:all 0.8s cubic-bezier(.16,1,.3,1)}
+.reveal-3d.visible{opacity:1;transform:none}
+
+.float-animation{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+.pulse-glow{animation:pulseGlow 3s ease-in-out infinite}
+@keyframes pulseGlow{
+  0%,100%{box-shadow:0 0 20px rgba(249,115,22,.15)}
+  50%{box-shadow:0 0 40px rgba(249,115,22,.35)}
+}
+
+/* ===== PAGE HEADER (for sub-pages) ===== */
+.page-header{padding:120px 24px 60px;background:linear-gradient(180deg,var(--slate-900),#1a1f2e);text-align:center;position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(249,115,22,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(249,115,22,.025) 1px,transparent 1px);background-size:80px 80px;pointer-events:none}
+.page-header-title{font-size:40px;font-weight:800;color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;position:relative;z-index:2}
+.page-header-desc{font-size:18px;color:var(--slate-400);line-height:1.6;max-width:560px;margin:0 auto;position:relative;z-index:2}
+.page-header .section-eyebrow{background:rgba(249,115,22,.15);color:#fb923c;border-color:rgba(249,115,22,.3);position:relative;z-index:2}
+@media(max-width:768px){
+  .page-header-title{font-size:28px}
+  .page-header{padding:100px 24px 48px}
+}
+
+/* ===== SCROLL PROGRESS (re-confirmed) ===== */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber),var(--orange));z-index:9999;transform-origin:left;transform:scaleX(0);transition:transform .1s linear}
+
+/* ===== PRINT STYLES ===== */
+@media print{
+  .navbar,.mobile-menu,.wa-float,.scroll-top,.fox-chat-btn,.fox-chat-window,
+  .toast-container,.cookie-consent,.install-prompt,.cursor-glow,
+  .hero-mesh,.hero-orb,.hero-grid,.hero-particles,.hero-visual-glow,
+  .ai-section-bg,.ai-orb,.cta-orb,.marquee-wrap,
+  .neural-bg,.parallax-layer,#scrollProgress{display:none !important}
+  body{background:#fff !important;color:#000 !important;font-size:12pt !important}
+  .section{padding:24px 0 !important}
+  .section-dark,.hero,.cta-section,.stats-section{background:#f5f5f5 !important}
+  .section-dark .section-title,.section-dark .section-desc,
+  .hero-title,.cta-title{color:#000 !important}
+  a{color:#000 !important;text-decoration:underline !important}
+  .reveal,.reveal-left,.reveal-right,.reveal-scale,.reveal-3d,
+  .stagger-parent .stagger-child{opacity:1 !important;transform:none !important}
+}

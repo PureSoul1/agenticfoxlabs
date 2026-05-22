@@ -1,239 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In — Agentic Fox Labs</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="/js/app.js"></script>
-  <style>
-    :root {
-      --bg-color: #f8fafc;
-      --surface-color: #ffffff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --brand-color: #334155;
-      --brand-hover: #0f172a;
-    }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    .login-container {
-      background: var(--surface-color);
-      border: 1px solid var(--border-color);
-      padding: 40px;
-      border-radius: 12px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-    }
-    .brand-title {
-      font-size: 24px;
-      font-weight: 800;
-      text-align: center;
-      margin-bottom: 8px;
-    }
-    .brand-subtitle {
-      font-size: 14px;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 32px;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    .form-group label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .form-group input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      font-size: 14px;
-      box-sizing: border-box;
-      background: #fdfdfd;
-    }
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--brand-color);
-    }
-    .btn {
-      width: 100%;
-      padding: 12px;
-      background: var(--brand-color);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    .btn:hover {
-      background: var(--brand-hover);
-    }
-    .btn-oauth {
-      background: transparent;
-      color: var(--text-main);
-      border: 1px solid var(--border-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .btn-oauth:hover {
-      background: #f1f5f9;
-    }
-    .divider {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 12px;
-      margin: 24px 0;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      border-bottom: 1px solid var(--border-color);
-    }
-    .divider:not(:empty)::before { margin-right: .5em; }
-    .divider:not(:empty)::after { margin-left: .5em; }
-    .toggle-text {
-      text-align: center;
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 20px;
-    }
-    .toggle-text a {
-      color: var(--brand-color);
-      text-decoration: none;
-      font-weight: 600;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Agentic Fox Labs</title>
+<meta name="description" content="Sign in to your Agentic Fox Labs account to manage your ERP subscriptions and deployments.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- Security Headers -->
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+
+<!-- PWA Meta -->
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#f97316">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KBFCDRPV');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0HSCCSBL45"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-0HSCCSBL45', { anonymize_ip: true });
+</script>
+
+<!-- External Resources -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/animations.css">
+<link rel="icon" href="./assets/favicon.png" type="image/png">
+
+<style>
+  :root {
+    --bg-color: #f8fafc;
+    --surface-color: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --brand-color: #334155;
+    --brand-hover: #0f172a;
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+  .login-container {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .login-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .login-logo img {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  .login-logo span {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-main);
+  }
+  .brand-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-main);
+  }
+  .form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background: #fafbfc;
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+  }
+  .btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--brand-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background .2s;
+  }
+  .btn:hover {
+    background: var(--brand-hover);
+  }
+  .btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+  }
+  .btn-oauth {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .btn-oauth:hover {
+    background: #f1f5f9;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    margin: 24px 0;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .divider:not(:empty)::before { margin-right: .5em; }
+  .divider:not(:empty)::after { margin-left: .5em; }
+  .toggle-text {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 20px;
+  }
+  .toggle-text a {
+    color: #f97316;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .toggle-text a:hover {
+    text-decoration: underline;
+  }
+  .error-msg {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .error-msg.show {
+    display: flex;
+  }
+  .success-msg {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 16px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+  }
+  .success-msg.show {
+    display: flex;
+  }
+  .back-link {
+    text-align: center;
+    margin-top: 24px;
+  }
+  .back-link a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: color .2s;
+  }
+  .back-link a:hover {
+    color: #f97316;
+  }
+</style>
 </head>
 <body>
 
-  <div class="login-container">
-    <div class="brand-title">Agentic Fox Labs</div>
-    <div class="brand-subtitle">Sign in to manage your enterprise ERP</div>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KBFCDRPV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
-    <button class="btn btn-oauth" onclick="loginWithGoogle()">
-      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.61c-.29 1.53-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.65-5.17 3.65-8.58z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.11 0-5.74-2.11-6.68-4.96H1.21v3.15C3.18 21.88 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.32 14.24A7.16 7.16 0 0 1 5 12c0-.79.13-1.57.32-2.34V6.51H1.21A11.94 11.94 0 0 0 0 12c0 1.92.45 3.74 1.21 5.39l4.11-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.18 2.12 1.21 6.51l4.11 3.15c.94-2.85 3.57-4.96 6.68-4.96z"/></svg>
-      Continue with Google
-    </button>
+<div class="login-container">
+  <div class="login-logo">
+    <img src="./assets/favicon.png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+    <span>Agentic Fox Labs</span>
+  </div>
+  <div class="brand-subtitle" id="brandSubtitle">Sign in to manage your enterprise ERP</div>
 
-    <div class="divider">or use email</div>
-
-    <form id="loginForm" onsubmit="handleEmailLogin(event)">
-      <div class="form-group">
-        <label for="email">Business Email</label>
-        <input type="email" id="email" required placeholder="name@company.com">
-      </div>
-      <div class="form-group" id="passwordGroup">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="••••••••">
-      </div>
-      
-      <button type="submit" class="btn" id="submitBtn">Sign In</button>
-    </form>
-
-    <div class="toggle-text">
-      <a href="#" onclick="toggleMagicLink(event)" id="magicLinkToggle">Use Magic Link instead</a>
-    </div>
-    
-    <div class="toggle-text" style="margin-top: 8px;">
-      Don't have an account? <a href="#" onclick="toggleMode(event)" id="modeToggle">Sign Up</a>
-    </div>
+  <div class="error-msg" id="errorMsg">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <span id="errorText"></span>
   </div>
 
-  <script>
-    let isSignUp = false;
-    let isMagicLink = false;
+  <div class="success-msg" id="successMsg">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="successText"></span>
+  </div>
 
-    function toggleMode(e) {
-      e.preventDefault();
-      isSignUp = !isSignUp;
-      document.querySelector('.brand-subtitle').textContent = isSignUp ? 'Create your enterprise account' : 'Sign in to manage your enterprise ERP';
-      document.getElementById('submitBtn').textContent = isSignUp ? 'Sign Up' : (isMagicLink ? 'Send Magic Link' : 'Sign In');
-      document.getElementById('modeToggle').textContent = isSignUp ? 'Sign In' : 'Sign Up';
-      document.getElementById('passwordGroup').style.display = (isMagicLink) ? 'none' : 'block';
+  <button class="btn btn-oauth" onclick="loginWithGoogle()" id="googleBtn">
+    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.61c-.29 1.53-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.65-5.17 3.65-8.58z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.11 0-5.74-2.11-6.68-4.96H1.21v3.15C3.18 21.88 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.32 14.24A7.16 7.16 0 0 1 5 12c0-.79.13-1.57.32-2.34V6.51H1.21A11.94 11.94 0 0 0 0 12c0 1.92.45 3.74 1.21 5.39l4.11-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.18 2.12 1.21 6.51l4.11 3.15c.94-2.85 3.57-4.96 6.68-4.96z"/></svg>
+    Continue with Google
+  </button>
+
+  <div class="divider">or use email</div>
+
+  <form id="loginForm" onsubmit="handleEmailLogin(event)">
+    <div class="form-group">
+      <label for="email">Business Email</label>
+      <input type="email" id="email" required placeholder="name@company.com" autocomplete="email">
+    </div>
+    <div class="form-group" id="passwordGroup">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn">Sign In</button>
+  </form>
+
+  <div class="toggle-text">
+    <a href="#" onclick="toggleMagicLink(event)" id="magicLinkToggle">Use Magic Link instead</a>
+  </div>
+
+  <div class="toggle-text" style="margin-top: 8px;">
+    Don't have an account? <a href="#" onclick="toggleMode(event)" id="modeToggle">Sign Up</a>
+  </div>
+
+  <div class="back-link">
+    <a href="./index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  </div>
+</div>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie-consent" id="cookieConsent" style="position:fixed;bottom:0;left:0;right:0;background:var(--slate-900,#0f172a);color:#fff;padding:20px 24px;z-index:10000;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;transform:translateY(100%);transition:transform .4s ease;">
+  <p style="font-size:14px;color:#94a3b8;margin:0;flex:1;">🍪 We use cookies to improve your experience. By continuing, you agree to our <a href="./privacy.html" style="color:#f97316;text-decoration:underline;">Privacy Policy</a>.</p>
+  <div style="display:flex;gap:10px;">
+    <button onclick="acceptCookies()" style="background:#f97316;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;font-size:13px;">Accept</button>
+    <button onclick="declineCookies()" style="background:transparent;color:#94a3b8;border:1px solid #475569;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px;">Decline</button>
+  </div>
+</div>
+
+<script src="./js/app.js" defer></script>
+<script>
+  let isSignUp = false;
+  let isMagicLink = false;
+
+  function showError(msg) {
+    const el = document.getElementById('errorMsg');
+    document.getElementById('errorText').textContent = msg;
+    el.classList.add('show');
+    document.getElementById('successMsg').classList.remove('show');
+  }
+
+  function showSuccess(msg) {
+    const el = document.getElementById('successMsg');
+    document.getElementById('successText').textContent = msg;
+    el.classList.add('show');
+    document.getElementById('errorMsg').classList.remove('show');
+  }
+
+  function clearMessages() {
+    document.getElementById('errorMsg').classList.remove('show');
+    document.getElementById('successMsg').classList.remove('show');
+  }
+
+  function toggleMode(e) {
+    e.preventDefault();
+    isSignUp = !isSignUp;
+    clearMessages();
+    document.getElementById('brandSubtitle').textContent = isSignUp ? 'Create your enterprise account' : 'Sign in to manage your enterprise ERP';
+    document.getElementById('submitBtn').textContent = isSignUp ? 'Sign Up' : (isMagicLink ? 'Send Magic Link' : 'Sign In');
+    document.getElementById('modeToggle').textContent = isSignUp ? 'Sign In' : 'Sign Up';
+    document.getElementById('passwordGroup').style.display = (isMagicLink) ? 'none' : 'block';
+  }
+
+  function toggleMagicLink(e) {
+    e.preventDefault();
+    isMagicLink = !isMagicLink;
+    clearMessages();
+    const passGroup = document.getElementById('passwordGroup');
+    if (isMagicLink) {
+      passGroup.style.display = 'none';
+      document.getElementById('password').removeAttribute('required');
+      document.getElementById('submitBtn').textContent = 'Send Magic Link';
+      document.getElementById('magicLinkToggle').textContent = 'Use password instead';
+    } else {
+      passGroup.style.display = 'block';
+      document.getElementById('password').setAttribute('required', 'required');
+      document.getElementById('submitBtn').textContent = isSignUp ? 'Sign Up' : 'Sign In';
+      document.getElementById('magicLinkToggle').textContent = 'Use Magic Link instead';
     }
+  }
 
-    function toggleMagicLink(e) {
-      e.preventDefault();
-      isMagicLink = !isMagicLink;
-      const passGroup = document.getElementById('passwordGroup');
+  async function handleEmailLogin(e) {
+    e.preventDefault();
+    clearMessages();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const btn = document.getElementById('submitBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+
+    try {
+      if (typeof sbClient === 'undefined') {
+        showError('Authentication service is not available. Please try again later.');
+        return;
+      }
       if (isMagicLink) {
-        passGroup.style.display = 'none';
-        document.getElementById('password').removeAttribute('required');
-        document.getElementById('submitBtn').textContent = 'Send Magic Link';
-        document.getElementById('magicLinkToggle').textContent = 'Use password instead';
-      } else {
-        passGroup.style.display = 'block';
-        document.getElementById('password').setAttribute('required', 'required');
-        document.getElementById('submitBtn').textContent = isSignUp ? 'Sign Up' : 'Sign In';
-        document.getElementById('magicLinkToggle').textContent = 'Use Magic Link instead';
-      }
-    }
-
-    async function handleEmailLogin(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      const btn = document.getElementById('submitBtn');
-      
-      btn.disabled = true;
-      btn.textContent = 'Processing...';
-
-      try {
-        if (isMagicLink) {
-          const { error } = await sbClient.auth.signInWithOtp({
-            email,
-            options: { emailRedirectTo: window.location.origin + '/portal.html' }
-          });
-          if (error) throw error;
-          alert('Magic link sent! Check your inbox.');
-        } else if (isSignUp) {
-          const { data, error } = await sbClient.auth.signUp({ email, password });
-          if (error) throw error;
-          alert('Registration successful! Please verify your email or log in.');
-        } else {
-          const { data, error } = await sbClient.auth.signInWithPassword({ email, password });
-          if (error) throw error;
-          window.location.href = '/portal.html';
-        }
-      } catch (err) {
-        alert(err.message || 'Authentication failed');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = isSignUp ? 'Sign Up' : (isMagicLink ? 'Send Magic Link' : 'Sign In');
-      }
-    }
-
-    async function loginWithGoogle() {
-      try {
-        const { error } = await sbClient.auth.signInWithOAuth({
-          provider: 'google',
-          options: { redirectTo: window.location.origin + '/portal.html' }
+        const { error } = await sbClient.auth.signInWithOtp({
+          email,
+          options: { emailRedirectTo: window.location.origin + '/portal.html' }
         });
         if (error) throw error;
-      } catch (err) {
-        alert(err.message || 'Google login failed');
+        showSuccess('Magic link sent! Check your inbox.');
+      } else if (isSignUp) {
+        const { data, error } = await sbClient.auth.signUp({ email, password });
+        if (error) throw error;
+        showSuccess('Registration successful! Please verify your email or log in.');
+      } else {
+        const { data, error } = await sbClient.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+        window.location.href = './portal.html';
       }
+    } catch (err) {
+      showError(err.message || 'Authentication failed. Please try again.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = isSignUp ? 'Sign Up' : (isMagicLink ? 'Send Magic Link' : 'Sign In');
     }
-  </script>
+  }
+
+  async function loginWithGoogle() {
+    clearMessages();
+    try {
+      if (typeof sbClient === 'undefined') {
+        showError('Authentication service is not available. Please try again later.');
+        return;
+      }
+      const { error } = await sbClient.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.origin + '/portal.html' }
+      });
+      if (error) throw error;
+    } catch (err) {
+      showError(err.message || 'Google login failed. Please try again.');
+    }
+  }
+
+  // Fix for checkAuth missing if app.js fails to load
+  if (typeof checkAuth === 'undefined') {
+    window.checkAuth = async function() { return null; };
+  }
+</script>
 </body>
 </html>
