@@ -587,6 +587,33 @@ function foxAddMsg(text, type){
   return div;
 }
 
+// ===== 3D TILT EFFECT FOR PRODUCT CARDS =====
+const cards = document.querySelectorAll('.prod-card');
+cards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; // X position within the element
+    const y = e.clientY - rect.top;  // Y position within the element
+    
+    // Calculate tilt (Adjust 20 for more/less tilt)
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const tiltX = (y - centerY) / 15; 
+    const tiltY = (centerX - x) / 15;
+    
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.03, 1.03, 1.03)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+    card.style.transition = 'transform 0.5s ease';
+  });
+
+  card.addEventListener('mouseenter', () => {
+    card.style.transition = 'none';
+  });
+});
+
 async function foxSendMessage(){
   if(foxTyping) return;
   const input = document.getElementById('foxInput');
