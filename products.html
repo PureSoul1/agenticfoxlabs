@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Products — Agentic Fox Labs | AI-Powered ERP Solutions</title>
+<meta name="description" content="Explore our AI-powered ERP solutions for School, Hospital, HR, Real Estate, and more. Go live in 14 days.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://agenticfoxlabs.com/products.html">
+
+<link rel="icon" href="Untitled (4).png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ===== RESET ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;background:#fff;color:#1e293b;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+
+/* ===== VARIABLES ===== */
+:root{--orange:#f97316;--orange-light:#fb923c;--orange-dark:#ea580c;--amber:#f59e0b;--slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-300:#cbd5e1;--slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;--slate-900:#0f172a;--green:#22c55e;--blue:#3b82f6;--purple:#8b5cf6;--red:#ef4444;--teal:#14b8a6;--cyan:#06b6d4;--yellow:#eab308}
+
+/* ===== SCROLL PROGRESS ===== */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber),var(--orange));z-index:9999;transform-origin:left;transform:scaleX(0);transition:transform .1s linear}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(249,115,22,.08);transition:all .3s ease}
+.navbar.scrolled{background:rgba(255,255,255,.98);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.nav-container{max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{width:40px;height:40px;border-radius:10px;object-fit:cover}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-logo-text .brand{font-size:18px;font-weight:800;color:var(--slate-900);line-height:1.1;letter-spacing:-.02em}
+.nav-logo-text .tag{font-size:10px;font-weight:600;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:600;color:var(--slate-600);transition:color .2s ease;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--orange);border-radius:2px;transition:width .3s ease}
+.nav-links a:hover{color:var(--orange)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--orange)}
+.nav-links a.active::after{width:100%}
+.nav-cta{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;font-size:14px;font-weight:700;padding:10px 24px;border-radius:12px;transition:all .3s ease;box-shadow:0 4px 14px rgba(249,115,22,.25);position:relative;overflow:hidden}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.35)}
+.nav-cta::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(to right,transparent 0%,rgba(255,255,255,.2) 50%,transparent 100%);transform:rotate(30deg) translateX(-100%);transition:transform .6s}
+.nav-cta:hover::after{transform:rotate(30deg) translateX(100%)}
+.nav-mobile-btn{display:none;font-size:20px;color:var(--slate-700);padding:8px;border-radius:8px;transition:background .2s}
+.nav-mobile-btn:hover{background:var(--slate-100)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-mobile-btn{display:block}
+  .nav-container{height:64px}
+}
+
+/* ===== MOBILE MENU ===== */
+.mobile-menu{position:fixed;top:64px;left:0;right:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--slate-200);z-index:999;transform:translateY(-100%);opacity:0;transition:all .35s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto}
+.mobile-menu a{display:flex;align-items:center;gap:12px;padding:16px 24px;font-size:15px;font-weight:600;color:var(--slate-700);border-bottom:1px solid var(--slate-100);transition:all .2s}
+.mobile-menu a:hover{background:var(--slate-50);color:var(--orange);padding-left:32px}
+.mobile-menu a i{width:20px;color:var(--orange)}
+.mobile-menu .mobile-cta{display:block;margin:16px 24px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:15px}
+
+/* ===== SECTIONS COMMON ===== */
+.section{padding:100px 24px}
+.section-alt{background:var(--slate-50)}
+.section-container{max-width:1280px;margin:0 auto}
+.section-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.section-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;background:linear-gradient(135deg,#fff7ed,#fef3c7);color:var(--orange-dark);border:1px solid #fed7aa;margin-bottom:16px}
+.section-title{font-size:40px;font-weight:800;color:var(--slate-900);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.section-desc{font-size:18px;color:var(--slate-500);line-height:1.6}
+@media(max-width:768px){.section{padding:64px 24px}.section-title{font-size:28px}}
+
+/* ===== PRODUCTS PAGE ===== */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1024px){.prod-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.prod-grid{grid-template-columns:1fr}}
+.prod-card{background:#fff;border:1px solid var(--slate-200);border-radius:20px;padding:28px;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.prod-card:hover{border-color:#fdba74;box-shadow:0 20px 48px rgba(249,115,22,.12);transform:translateY(-6px)}
+.prod-card.featured{border:2px solid var(--orange);position:relative;overflow:hidden}
+.prod-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber),var(--orange));background-size:200% 100%;animation:shimmer 2s linear infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.prod-card.dark{background:linear-gradient(135deg,var(--slate-900),#1a1f2e);border-color:rgba(255,255,255,.08);color:#fff}
+.prod-card.dark:hover{border-color:rgba(249,115,22,.3);box-shadow:0 24px 48px rgba(0,0,0,.3)}
+.prod-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.prod-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.prod-tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:100px;font-size:12px;font-weight:600}
+.prod-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.prod-card.dark h3{color:#fff}
+.prod-card p{font-size:14px;color:var(--slate-500);line-height:1.6;margin-bottom:16px;flex-grow:1}
+.prod-card.dark p{color:var(--slate-400)}
+.prod-features{list-style:none;padding:0;margin:0 0 20px}
+.prod-features li{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--slate-600);margin-bottom:8px}
+.prod-features li i{color:var(--green);font-size:11px}
+.prod-card.dark .prod-features li{color:var(--slate-400)}
+.prod-actions{display:flex;gap:10px;margin-top:auto}
+.prod-btn{flex:1;text-align:center;padding:10px 16px;border-radius:12px;font-size:13px;font-weight:700;transition:all .2s}
+.prod-btn-primary{background:var(--slate-900);color:#fff}
+.prod-btn-primary:hover{background:var(--orange)}
+.prod-btn-secondary{border:1px solid var(--slate-200);color:var(--slate-600)}
+.prod-btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+.prod-card.featured .prod-btn-primary{background:var(--orange)}
+.prod-card.featured .prod-btn-primary:hover{background:var(--orange-dark)}
+.prod-card.featured .prod-btn-secondary{border-color:var(--orange);color:var(--orange)}
+.prod-card.dark .prod-btn-primary{background:var(--orange)}
+.prod-card.dark .prod-btn-primary:hover{background:var(--orange-light)}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--slate-900);color:var(--slate-400);position:relative}
+.footer::before{content:'';display:block;height:1px;background:linear-gradient(to right,transparent,rgba(249,115,22,.4),transparent)}
+.footer-container{max-width:1280px;margin:0 auto;padding:64px 24px 32px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.footer-brand img{width:36px;height:36px;border-radius:8px;background:#fff;padding:2px}
+.footer-brand span{font-size:16px;font-weight:800;color:#fff}
+.footer-desc{font-size:14px;line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:10px;background:var(--slate-800);display:flex;align-items:center;justify-content:center;color:var(--slate-400);font-size:14px;transition:all .2s}
+.footer-social a:hover{background:var(--orange);color:#fff}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.footer-links li{margin-bottom:12px}
+.footer-links a{font-size:14px;color:var(--slate-400);transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-contact li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px}
+.footer-contact li i{color:var(--orange);margin-top:3px;font-size:14px;width:16px;text-align:center;flex-shrink:0}
+.footer-contact a{color:var(--slate-400);transition:color .2s}
+.footer-contact a:hover{color:#fff}
+.footer-bottom{border-top:1px solid var(--slate-800);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px}
+
+/* ===== WHATSAPP FLOAT ===== */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:1000;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(37,211,102,.3);transition:all .3s ease}
+.wa-float:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 12px 32px rgba(37,211,102,.4)}
+
+/* ===== SCROLL TOP ===== */
+.scroll-top{position:fixed;bottom:96px;right:24px;z-index:1000;width:44px;height:44px;border-radius:50%;background:var(--slate-800);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.15);opacity:0;pointer-events:none;transform:translateY(10px);transition:all .3s ease}
+.scroll-top.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.scroll-top:hover{background:var(--orange)}
+
+/* ===== ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-parent .stagger-child{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.stagger-parent.visible .stagger-child:nth-child(1){opacity:1;transform:translateY(0);transition-delay:.05s}
+.stagger-parent.visible .stagger-child:nth-child(2){opacity:1;transform:translateY(0);transition-delay:.1s}
+.stagger-parent.visible .stagger-child:nth-child(3){opacity:1;transform:translateY(0);transition-delay:.15s}
+.stagger-parent.visible .stagger-child:nth-child(4){opacity:1;transform:translateY(0);transition-delay:.2s}
+.stagger-parent.visible .stagger-child:nth-child(5){opacity:1;transform:translateY(0);transition-delay:.25s}
+.stagger-parent.visible .stagger-child:nth-child(6){opacity:1;transform:translateY(0);transition-delay:.3s}
+.stagger-parent.visible .stagger-child:nth-child(7){opacity:1;transform:translateY(0);transition-delay:.35s}
+.stagger-parent.visible .stagger-child:nth-child(8){opacity:1;transform:translateY(0);transition-delay:.4s}
+.stagger-parent.visible .stagger-child:nth-child(9){opacity:1;transform:translateY(0);transition-delay:.45s}
+
+@media(max-width:480px){
+  .fox-chat-btn{bottom:16px;left:16px;}
+  .wa-float{bottom:16px;right:16px;}
+  .fox-chat-window{width:calc(100vw - 32px) !important;left:16px !important;}
+}
+
+/* ===== FOX AI CHATBOT ===== */
+.fox-chat-btn{position:fixed;bottom:24px;left:24px;z-index:1001;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(249,115,22,.4);cursor:pointer;border:none;transition:all .3s ease;}
+.fox-chat-btn:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 12px 32px rgba(249,115,22,.5);}
+.fox-chat-btn .fox-notif{position:absolute;top:-4px;right:-4px;width:18px;height:18px;background:#22c55e;border-radius:50%;border:2px solid #fff;animation:pulseGreen 2s infinite;}
+@keyframes pulseGreen{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+
+.fox-chat-window{position:fixed;bottom:100px;left:24px;z-index:1002;width:360px;height:500px;background:#fff;border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden;transform:scale(0) translateY(20px);transform-origin:bottom left;opacity:0;transition:all .3s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+.fox-chat-window.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
+
+.fox-chat-header{background:linear-gradient(135deg,#0f172a,#1e293b);padding:16px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.fox-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.fox-header-info{flex:1;}
+.fox-header-name{font-size:15px;font-weight:700;color:#fff;}
+.fox-header-status{font-size:12px;color:#22c55e;display:flex;align-items:center;gap:5px;}
+.fox-header-status::before{content:'';width:7px;height:7px;background:#22c55e;border-radius:50%;display:inline-block;}
+.fox-close-btn{background:none;border:none;color:rgba(255,255,255,.5);font-size:18px;cursor:pointer;padding:4px;transition:color .2s;}
+.fox-close-btn:hover{color:#fff;}
+
+.fox-chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;}
+.fox-chat-messages::-webkit-scrollbar{width:4px;}
+.fox-chat-messages::-webkit-scrollbar-track{background:transparent;}
+.fox-chat-messages::-webkit-scrollbar-thumb{background:#e2e8f0;border-radius:4px;}
+
+.fox-msg{max-width:85%;padding:10px 14px;border-radius:16px;font-size:13.5px;line-height:1.6;animation:msgIn .3s ease;}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fox-msg.bot{background:#f8fafc;color:#1e293b;border-bottom-left-radius:4px;align-self:flex-start;border:1px solid #e2e8f0;}
+.fox-msg.user{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
+.fox-msg.typing{background:#f8fafc;border:1px solid #e2e8f0;align-self:flex-start;}
+.fox-typing-dots{display:flex;gap:4px;padding:2px 4px;}
+.fox-typing-dots span{width:7px;height:7px;background:#94a3b8;border-radius:50%;animation:typingDot 1.2s infinite;}
+.fox-typing-dots span:nth-child(2){animation-delay:.2s;}
+.fox-typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+.fox-quick-btns{padding:0 16px 12px;display:flex;gap:8px;flex-wrap:wrap;flex-shrink:0;}
+.fox-quick-btn{background:#fff;border:1px solid #e2e8f0;border-radius:100px;padding:6px 14px;font-size:12px;font-weight:600;color:#475569;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.fox-quick-btn:hover{border-color:#f97316;color:#f97316;}
+
+.fox-chat-input{padding:12px 16px;border-top:1px solid #f1f5f9;display:flex;gap:10px;align-items:center;flex-shrink:0;}
+.fox-input{flex:1;border:1px solid #e2e8f0;border-radius:12px;padding:10px 14px;font-size:13.5px;font-family:inherit;outline:none;transition:border .2s;resize:none;max-height:80px;}
+.fox-input:focus{border-color:#f97316;}
+.fox-send-btn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .2s;}
+.fox-send-btn:hover{transform:scale(1.1);}
+.fox-send-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+
+@media(max-width:480px){
+  .fox-chat-window{width:calc(100vw - 32px);left:16px;bottom:90px;}
+}
+</style>
+
+</head>
+
+<body>
+<div id="scrollProgress"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="./index.html" class="nav-logo">
+      <img src="Untitled (4).png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand">Agentic Fox Labs</span>
+        <span class="tag">AI-Powered Solutions</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="./index.html" data-page="home">Home</a>
+      <a href="./products.html" class="active" data-page="products">Products</a>
+      <a href="./pricing.html" data-page="pricing">Pricing</a>
+      <a href="./whyus.html" data-page="whyus">Why Us</a>
+      <a href="./demo.html" class="nav-cta">Book Free Demo</a>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html"><i class="fa-solid fa-home"></i> Home</a>
+  <a href="./products.html"><i class="fa-solid fa-grid-2"></i> Products</a>
+  <a href="./pricing.html"><i class="fa-solid fa-tag"></i> Pricing</a>
+  <a href="./whyus.html"><i class="fa-solid fa-star"></i> Why Us</a>
+  <a href="./demo.html" class="mobile-cta"><i class="fa-solid fa-calendar-check"></i> Book Free Demo</a>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<section class="section" style="padding-top:120px">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Our Solutions</span>
+      <h2 class="section-title">Industry-Ready ERP Products</h2>
+      <p class="section-desc">Production-ready SaaS solutions. Go live within 14 days or fully customize as per your needs.</p>
+    </div>
+    <div class="prod-grid stagger-parent">
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#dbeafe;color:#2563eb"><i class="fa-solid fa-school"></i></div>
+          <span class="prod-tag" style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe">Education</span>
+        </div>
+        <h3>School ERP Management</h3>
+        <p>Complete school automation — admissions, fees, attendance, exams, parent portal, and ID card generation.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Student & Staff Management</li>
+          <li><i class="fa-solid fa-check"></i> Online Fee Collection</li>
+          <li><i class="fa-solid fa-check"></i> Parent Alerts via WhatsApp</li>
+          <li><i class="fa-solid fa-check"></i> Exam & Progress Reports</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#dcfce7;color:#16a34a"><i class="fa-solid fa-stethoscope"></i></div>
+          <span class="prod-tag" style="background:#f0fdf4;color:#15803d;border:1px solid #bbf7d0">Healthcare</span>
+        </div>
+        <h3>Clinic ERP</h3>
+        <p>OPD management, appointments, digital prescriptions, patient history & billing.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Digital Prescription</li>
+          <li><i class="fa-solid fa-check"></i> Token & Appointment</li>
+          <li><i class="fa-solid fa-check"></i> Medicine Stock</li>
+          <li><i class="fa-solid fa-check"></i> Patient History</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#fee2e2;color:#dc2626"><i class="fa-solid fa-hospital"></i></div>
+          <span class="prod-tag" style="background:#fef2f2;color:#dc2626;border:1px solid #fecaca">Hospital</span>
+        </div>
+        <h3>Hospital ERP</h3>
+        <p>Complete hospital automation — IPD/OPD, pharmacy, lab, operation theater, and insurance billing.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Bed & Ward Management</li>
+          <li><i class="fa-solid fa-check"></i> Lab Report Integration</li>
+          <li><i class="fa-solid fa-check"></i> TPA & Insurance Billing</li>
+          <li><i class="fa-solid fa-check"></i> OT Scheduling</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#f3e8ff;color:#7c3aed"><i class="fa-solid fa-dumbbell"></i></div>
+          <span class="prod-tag" style="background:#faf5ff;color:#7e22ce;border:1px solid #e9d5ff">Fitness</span>
+        </div>
+        <h3>Gym ERP</h3>
+        <p>Member management, subscriptions, diet plans, biometric attendance, and trainer portal.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Auto Renewal Alerts</li>
+          <li><i class="fa-solid fa-check"></i> Biometric Attendance</li>
+          <li><i class="fa-solid fa-check"></i> Workout & Diet Tracking</li>
+          <li><i class="fa-solid fa-check"></i> Trainer Commission</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#fef9c3;color:#a16207"><i class="fa-solid fa-building"></i></div>
+          <span class="prod-tag" style="background:#fefce8;color:#a16207;border:1px solid #fef08a">Real Estate</span>
+        </div>
+        <h3>Real Estate ERP</h3>
+        <p>Property management, lead CRM, site visits, booking, payment plans, and commission tracking.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Property Listings</li>
+          <li><i class="fa-solid fa-check"></i> Lead & Customer CRM</li>
+          <li><i class="fa-solid fa-check"></i> Site Visit Scheduling</li>
+          <li><i class="fa-solid fa-check"></i> Broker Commission</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#cffafe;color:#0e7490"><i class="fa-solid fa-helmet-safety"></i></div>
+          <span class="prod-tag" style="background:#ecfeff;color:#0e7490;border:1px solid #a5f3fc">Construction</span>
+        </div>
+        <h3>Construction ERP</h3>
+        <p>Project management, material tracking, labor management, and billing.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Project Timeline Tracking</li>
+          <li><i class="fa-solid fa-check"></i> Material & Inventory</li>
+          <li><i class="fa-solid fa-check"></i> Labor Attendance</li>
+          <li><i class="fa-solid fa-check"></i> Client Billing</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#ccfbf1;color:#0f766e"><i class="fa-solid fa-users"></i></div>
+          <span class="prod-tag" style="background:#f0fdfa;color:#0f766e;border:1px solid #99f6e4">HR</span>
+        </div>
+        <h3>HR ERP Management</h3>
+        <p>Complete human resource management — employees, payroll, attendance, leave, and performance.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Employee Management</li>
+          <li><i class="fa-solid fa-check"></i> Payroll Management</li>
+          <li><i class="fa-solid fa-check"></i> Leave Management</li>
+          <li><i class="fa-solid fa-check"></i> Performance Tracking</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card featured">
+        <div class="prod-header">
+          <div class="prod-icon" style="background:#ffedd5;color:var(--orange-dark)"><i class="fa-solid fa-briefcase"></i></div>
+          <span class="prod-tag" style="background:var(--orange);color:#fff">Most Popular</span>
+        </div>
+        <h3>Business Management ERP</h3>
+        <p>For any business — tax billing, inventory, CRM, accounting, and tax reports all in one platform.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check"></i> Tax Invoice + E-Way Bill</li>
+          <li><i class="fa-solid fa-check"></i> Stock & Inventory</li>
+          <li><i class="fa-solid fa-check"></i> Tax Return Export</li>
+          <li><i class="fa-solid fa-check"></i> Customer & Vendor Ledger</li>
+        </ul>
+        <div class="prod-actions">
+          <a href="./demo.html" class="prod-btn prod-btn-primary" style="background:var(--orange)">Get Demo</a>
+          <a href="./demo.html" class="prod-btn prod-btn-secondary" style="border-color:var(--orange);color:var(--orange)">Get Started</a>
+        </div>
+      </div>
+      <div class="stagger-child prod-card dark">
+        <div class="prod-icon" style="background:rgba(255,255,255,.1);color:#fff;margin-bottom:16px"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Custom SaaS Development</h3>
+        <p>Have a unique vision? We build it. AI apps, Web3, mobile applications — anything your business needs.</p>
+        <ul class="prod-features">
+          <li><i class="fa-solid fa-check" style="color:var(--orange-light)"></i> UI/UX Design</li>
+          <li><i class="fa-solid fa-check" style="color:var(--orange-light)"></i> Full Stack Development</li>
+          <li><i class="fa-solid fa-check" style="color:var(--orange-light)"></i> AI & Mobile Integration</li>
+          <li><i class="fa-solid fa-check" style="color:var(--orange-light)"></i> Lifetime Support</li>
+        </ul>
+        <a href="./demo.html" class="prod-btn prod-btn-primary" style="background:var(--orange);margin-top:auto">Discuss Your Idea →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="Untitled (4).png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+          <span>Agentic Fox Labs</span>
+        </div>
+        <p class="footer-desc">AI-first SaaS & ERP solutions for businesses worldwide. Automate, scale, and grow with confidence.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/agenticfoxlabs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/116364441/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Products</h4>
+        <ul class="footer-links">
+          <li><a href="./products.html">School ERP</a></li>
+          <li><a href="./products.html">Hospital ERP</a></li>
+          <li><a href="./products.html">Real Estate ERP</a></li>
+          <li><a href="./products.html">Construction ERP</a></li>
+          <li><a href="./products.html">Business ERP</a></li>
+          <li><a href="./products.html">Custom SaaS</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="./whyus.html">Why Agentic Fox Labs</a></li>
+          <li><a href="./pricing.html">Pricing Plans</a></li>
+          <li><a href="./demo.html">Book a Demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:admin@agenticfoxlabs.com">admin@agenticfoxlabs.com</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+919452200700">+91 94522 00700</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><span>Rajajipuram, Lucknow, India - 226017</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear"></span> Agentic Fox Labs. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FOX AI CHATBOT -->
+<button class="fox-chat-btn" id="foxChatBtn" aria-label="Chat with Fox AI">
+  🦊
+  <span class="fox-notif"></span>
+</button>
+
+<div class="fox-chat-window" id="foxChatWindow">
+  <div class="fox-chat-header">
+    <div class="fox-avatar">🦊</div>
+    <div class="fox-header-info">
+      <div class="fox-header-name">Fox AI</div>
+      <div class="fox-header-status">Online — AgenticFoxLabs</div>
+    </div>
+    <button class="fox-close-btn" id="foxCloseBtn">✕</button>
+  </div>
+
+  <div class="fox-chat-messages" id="foxMessages">
+    <div class="fox-msg bot">👋 Hi! I'm <strong>Fox AI</strong>, your AgenticFoxLabs assistant!<br><br>I can help you with our ERP products, pricing, demos, and more. What can I help you with today?</div>
+  </div>
+
+  <div class="fox-quick-btns" id="foxQuickBtns">
+    <button class="fox-quick-btn" onclick="foxQuickSend('What ERPs do you offer?')">📦 Our Products</button>
+    <button class="fox-quick-btn" onclick="foxQuickSend('What is the pricing?')">💰 Pricing</button>
+    <button class="fox-quick-btn" onclick="foxQuickSend('I want to book a demo')">📅 Book Demo</button>
+  </div>
+
+  <div class="fox-chat-input">
+    <textarea class="fox-input" id="foxInput" placeholder="Ask me anything..." rows="1"></textarea>
+    <button class="fox-send-btn" id="foxSendBtn">➤</button>
+  </div>
+</div>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919452200700?text=Hi%20Agentic%20Fox%20Labs!%20I%20want%20to%20know%20more%20about%20your%20ERP%20and%20SaaS%20solutions." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+// ===== SCROLL PROGRESS =====
+window.addEventListener('scroll',()=>{const p=document.getElementById('scrollProgress');if(p){const s=document.documentElement.scrollTop/(document.documentElement.scrollHeight-document.documentElement.clientHeight);p.style.transform='scaleX('+Math.min(s,1)+')'}},{passive:true});
+
+// ===== NAVBAR SCROLL =====
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+
+// ===== MOBILE MENU =====
+document.getElementById('mobileMenuBtn').onclick=function(){document.getElementById('mobileMenu').classList.toggle('open')};
+
+// ===== SCROLL REVEAL =====
+function observeAll(){
+  const opts={threshold:.1,rootMargin:'0px 0px -50px 0px'};
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el=>{
+    new IntersectionObserver((entries,obs)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},opts).observe(el);
+  });
+  document.querySelectorAll('.stagger-parent').forEach(el=>{
+    new IntersectionObserver((entries,obs)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},opts).observe(el);
+  });
+}
+
+// ===== SCROLL TOP =====
+const stb=document.getElementById('scrollTopBtn');
+window.addEventListener('scroll',()=>{stb.classList.toggle('visible',window.scrollY>500)},{passive:true});
+stb.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// ===== YEAR =====
+document.getElementById('currentYear').textContent=new Date().getFullYear();
+
+// ===== INIT =====
+observeAll();
+
+// ===== FOX AI CHATBOT =====
+const WORKER_URL = 'https://fox-ai-bot.abhaypawan01.workers.dev';
+let foxOpen = false;
+let foxTyping = false;
+
+document.getElementById('foxChatBtn').onclick = function(){
+  foxOpen = !foxOpen;
+  document.getElementById('foxChatWindow').classList.toggle('open', foxOpen);
+  if(foxOpen) {
+    document.getElementById('foxInput').focus();
+    document.querySelector('.fox-notif').style.display = 'none';
+  }
+};
+
+document.getElementById('foxCloseBtn').onclick = function(){
+  foxOpen = false;
+  document.getElementById('foxChatWindow').classList.remove('open');
+};
+
+document.getElementById('foxInput').addEventListener('keydown', function(e){
+  if(e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    foxSendMessage();
+  }
+});
+
+document.getElementById('foxSendBtn').onclick = foxSendMessage;
+
+function foxQuickSend(msg){
+  document.getElementById('foxInput').value = msg;
+  document.getElementById('foxQuickBtns').style.display = 'none';
+  foxSendMessage();
+}
+
+function foxAddMsg(text, type){
+  const msgs = document.getElementById('foxMessages');
+  const div = document.createElement('div');
+  div.className = 'fox-msg ' + type;
+  if(type === 'typing'){
+    div.innerHTML = '<div class="fox-typing-dots"><span></span><span></span><span></span></div>';
+  } else {
+    div.innerHTML = text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  }
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return div;
+}
+
+async function foxSendMessage(){
+  if(foxTyping) return;
+  const input = document.getElementById('foxInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  foxAddMsg(msg, 'user');
+
+  foxTyping = true;
+  document.getElementById('foxSendBtn').disabled = true;
+  const typingEl = foxAddMsg('', 'typing');
+
+  try {
+    const res = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: msg })
+    });
+    const data = await res.json();
+    typingEl.remove();
+    foxAddMsg(data.reply || 'Sorry, something went wrong!', 'bot');
+  } catch(err) {
+    typingEl.remove();
+    foxAddMsg('Sorry, I am having trouble connecting. Please WhatsApp us at +91 94522 00700 🙏', 'bot');
+  }
+
+  foxTyping = false;
+  document.getElementById('foxSendBtn').disabled = false;
+  document.getElementById('foxInput').focus();
+}
+
+document.getElementById('foxInput').addEventListener('input', function(){
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+});
+</script>
+
+</body>
+</html>
