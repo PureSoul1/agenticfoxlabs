@@ -625,6 +625,9 @@ async function foxSendMessage(){
   input.value = '';
   input.style.height = 'auto';
   foxAddMsg(msg, 'user');
+  
+  // FIX 1: Worker ko messages array chahiye, isliye history usi format mein bhej rahe hain
+  conversationHistory.push({ role: 'user', content: msg });
 
   foxTyping = true;
   document.getElementById('foxSendBtn').disabled = true;
@@ -634,21 +637,30 @@ async function foxSendMessage(){
     const res = await fetch(WORKER_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg })
+      body: JSON.stringify({
+        messages: conversationHistory.slice(-10) // Worker ko 'messages' key chahiye
+      })
     });
+    
     const data = await res.json();
     typingEl.remove();
-    foxAddMsg(data.reply || 'Sorry, something went wrong!', 'bot');
+    
+    // FIX 2: Worker raw Groq response bhejta hai, usme answer 'choices' array ke andar hota hai
+    const reply = data.choices?.[0]?.message?.content || 'Sorry, I am unable to respond right now. Please WhatsApp us at +91 94522 00700';
+    
+    foxAddMsg(reply, 'bot');
+    // History mein bot ka reply bhi 'assistant' role mein daalo taaki context bane rahe
+    conversationHistory.push({ role: 'assistant', content: reply });
+    
   } catch(err) {
     typingEl.remove();
-    foxAddMsg('Sorry, I am having trouble connecting. Please WhatsApp us at +91 94522 00700 🙏', 'bot');
+    foxAddMsg('Network error. Please WhatsApp us at +91 94522 00700 🙏', 'bot');
   }
 
   foxTyping = false;
   document.getElementById('foxSendBtn').disabled = false;
   document.getElementById('foxInput').focus();
 }
-
 document.getElementById('foxInput').addEventListener('input', function(){
   this.style.height = 'auto';
   this.style.height = Math.min(this.scrollHeight, 80) + 'px';
