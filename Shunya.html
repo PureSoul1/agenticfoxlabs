@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shunya AI — Your Invisible AI Copilot for Meetings, Interviews & Sales</title>
+<meta name="description" content="Shunya AI is a stealth desktop assistant that listens, understands, and gives you real-time AI answers during meetings, interviews, and sales calls. For Windows.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://agenticfoxlabs.com/Shunya.html">
+<link rel="icon" href="Untitled (4).png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;background:#fff;color:#1e293b;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+:root{--orange:#f97316;--orange-light:#fb923c;--orange-dark:#ea580c;--amber:#f59e0b;--slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-300:#cbd5e1;--slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;--slate-900:#0f172a;--green:#22c55e;--blue:#3b82f6;--purple:#8b5cf6}
+
+/* NAV */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(249,115,22,.08);transition:all .3s ease}
+.navbar.scrolled{background:rgba(255,255,255,.98);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.nav-container{max-width:1280px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo img{width:40px;height:40px;border-radius:10px;object-fit:cover}
+.nav-logo-text{display:flex;flex-direction:column}
+.nav-logo-text .brand{font-size:18px;font-weight:800;color:var(--slate-900);line-height:1.1}
+.nav-logo-text .tag{font-size:10px;font-weight:600;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{font-size:14px;font-weight:600;color:var(--slate-600);transition:color .2s;position:relative}
+.nav-links a:hover{color:var(--orange)}
+.nav-links a.active{color:var(--orange)}
+.nav-cta{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff !important;font-size:14px;font-weight:700;padding:10px 24px;border-radius:12px;box-shadow:0 4px 14px rgba(249,115,22,.25)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,.35)}
+.nav-mobile-btn{display:none;font-size:20px;color:var(--slate-700)}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid var(--slate-200);z-index:999;padding:16px 24px;flex-direction:column;gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:12px 16px;border-radius:10px;font-size:15px;font-weight:600;color:var(--slate-700);display:flex;align-items:center;gap:12px}
+.mobile-menu a:hover,.mobile-menu a.active{background:var(--slate-50);color:var(--orange)}
+.mobile-menu .mobile-cta{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border-radius:12px;margin-top:8px;justify-content:center}
+@media(max-width:768px){.nav-links{display:none}.nav-mobile-btn{display:block}}
+
+/* SECTIONS */
+.section{padding:100px 24px}
+.section-alt{background:var(--slate-50)}
+.section-container{max-width:1280px;margin:0 auto}
+.section-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.section-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;background:linear-gradient(135deg,#fff7ed,#fef3c7);color:var(--orange-dark);border:1px solid #fed7aa;margin-bottom:16px}
+.section-title{font-size:40px;font-weight:800;color:var(--slate-900);line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.gradient-text{background:linear-gradient(135deg,var(--orange),var(--amber));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-desc{font-size:18px;color:var(--slate-500);line-height:1.6}
+
+/* HERO */
+.shunya-hero{padding:160px 24px 110px;background:linear-gradient(160deg,#0f172a 0%,#1e293b 60%,#0f172a 100%);position:relative;overflow:hidden}
+.shunya-hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(249,115,22,.15) 0%,transparent 70%);pointer-events:none}
+.shunya-hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(139,92,246,.1) 0%,transparent 70%);pointer-events:none}
+.shunya-hero-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center;position:relative;z-index:2}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.3);margin-bottom:24px}
+.hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:#f97316;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.shunya-hero h1{font-size:54px;font-weight:800;line-height:1.08;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.shunya-hero h1 .hl{background:linear-gradient(135deg,#f97316,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.shunya-hero .hero-sub{font-size:18px;color:#94a3b8;margin-bottom:36px;line-height:1.7;max-width:520px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;font-weight:700;padding:14px 28px;border-radius:14px;font-size:16px;box-shadow:0 8px 24px rgba(249,115,22,.35);transition:all .3s}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(249,115,22,.5)}
+.btn-ghost{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);color:#e2e8f0;font-weight:700;padding:14px 28px;border-radius:14px;font-size:16px;border:1px solid rgba(255,255,255,.12);transition:all .3s;backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(249,115,22,.4);color:#fff}
+.hero-trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.hero-trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:#64748b}
+.hero-trust-item i{color:#f97316;font-size:12px}
+
+/* USE CASE PILLS */
+.use-cases{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.uc-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;font-size:13px;font-weight:600;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:#cbd5e1;transition:all .3s}
+.uc-pill i{font-size:12px}
+.uc-pill.active-pill{background:rgba(249,115,22,.15);border-color:rgba(249,115,22,.4);color:#fb923c}
+
+/* HERO VISUAL */
+.hero-visual-wrap{position:relative}
+.hero-mockup{background:#1e293b;border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.mockup-bar{background:#0f172a;padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mockup-dot{width:10px;height:10px;border-radius:50%}
+.mockup-title{font-size:12px;color:#475569;font-weight:600;margin-left:8px;font-family:monospace}
+.mockup-body{padding:20px}
+.mockup-msg{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.mockup-avatar{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.mockup-bubble{background:rgba(255,255,255,.05);border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.6;color:#cbd5e1;border:1px solid rgba(255,255,255,.06)}
+.mockup-bubble.ai{background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.2);color:#fed7aa}
+.mockup-badge{position:absolute;top:-12px;right:24px;background:linear-gradient(135deg,var(--green),#16a34a);color:#fff;font-size:11px;font-weight:800;padding:6px 14px;border-radius:30px;display:flex;align-items:center;gap:6px;box-shadow:0 4px 14px rgba(34,197,94,.3)}
+.mockup-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#fff;animation:pulse 1.5s infinite}
+
+@media(max-width:900px){.shunya-hero-grid{grid-template-columns:1fr}.hero-visual-wrap{margin-top:48px}}
+@media(max-width:640px){.shunya-hero{padding:120px 24px 80px}.shunya-hero h1{font-size:36px}}
+@media(max-width:700px){#download .reveal[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:#fff;border:1px solid var(--slate-200);border-radius:20px;padding:28px;transition:all .3s}
+.feat-card:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(249,115,22,.1);border-color:#fdba74}
+.feat-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.feat-card h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--slate-900)}
+.feat-card p{font-size:14px;color:var(--slate-500);line-height:1.6}
+@media(max-width:1024px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.feat-grid{grid-template-columns:1fr}}
+
+/* USE CASE SECTION */
+.usecase-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto}
+.usecase-card{background:#fff;border:2px solid var(--slate-200);border-radius:20px;padding:32px;transition:all .3s;position:relative;overflow:hidden}
+.usecase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.usecase-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.usecase-card:hover::before{transform:scaleX(1)}
+.usecase-icon{font-size:36px;margin-bottom:16px}
+.usecase-card h3{font-size:20px;font-weight:800;margin-bottom:8px;color:var(--slate-900)}
+.usecase-card p{font-size:14px;color:var(--slate-500);line-height:1.7}
+.usecase-tag{display:inline-flex;align-items:center;gap:6px;margin-top:16px;padding:6px 14px;background:var(--slate-50);border-radius:100px;font-size:12px;font-weight:700;color:var(--slate-600);border:1px solid var(--slate-200)}
+@media(max-width:640px){.usecase-grid{grid-template-columns:1fr}}
+
+/* STEPS */
+.steps-container{max-width:800px;margin:0 auto}
+.step-item{display:flex;gap:24px;margin-bottom:40px;position:relative}
+.step-item:not(:last-child)::after{content:'';position:absolute;left:23px;top:50px;bottom:-10px;width:2px;background:linear-gradient(180deg,var(--orange),#fed7aa)}
+.step-num{width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-content h3{font-size:20px;font-weight:700;margin-bottom:8px}
+.step-content p{font-size:15px;color:var(--slate-500);line-height:1.7}
+.step-warning{background:#fef2f2;border:1px solid #fecaca;color:#991b1b;padding:14px 18px;border-radius:12px;margin-top:12px;font-size:14px;display:flex;gap:12px;align-items:flex-start}
+.step-warning i{margin-top:3px;color:#ef4444}
+.info-box{padding:14px 18px;border-radius:12px;margin-top:14px;display:flex;gap:12px;align-items:flex-start}
+.info-box.green{background:#f0fdf4;border:1px solid #bbf7d0}
+.info-box.blue{background:#eff6ff;border:1px solid #bfdbfe}
+.info-box ol{font-size:13px;padding-left:18px;line-height:2.1;margin-top:6px}
+
+/* SHORTCUTS */
+.shortcuts-box{background:var(--slate-50);border:1px solid var(--slate-200);border-radius:12px;padding:18px 20px;margin-top:14px}
+.shortcuts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+kbd{background:#e2e8f0;padding:2px 7px;border-radius:4px;font-size:11px;font-family:monospace}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.price-card{background:#fff;border:2px solid var(--slate-200);border-radius:24px;padding:36px 28px;display:flex;flex-direction:column;gap:16px;transition:all .3s;position:relative}
+.price-card:hover{border-color:var(--orange);box-shadow:0 20px 50px rgba(249,115,22,.12);transform:translateY(-4px)}
+.price-card.featured{background:linear-gradient(135deg,#fff7ed,#fff);border-color:var(--orange);box-shadow:0 20px 60px rgba(249,115,22,.15);transform:scale(1.03)}
+.price-card.lifetime:hover{border-color:var(--purple);box-shadow:0 20px 50px rgba(139,92,246,.1)}
+.price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:800;padding:6px 20px;border-radius:30px;white-space:nowrap}
+.price-label{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.price-amount{display:flex;align-items:baseline;gap:2px}
+.price-amount .currency{font-size:24px;font-weight:800;color:var(--slate-900)}
+.price-amount .amount{font-size:48px;font-weight:800;color:var(--slate-900);line-height:1}
+.price-amount .period{font-size:15px;color:var(--slate-400);margin-left:4px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
+.price-features li{font-size:14px;color:var(--slate-700);display:flex;gap:10px;align-items:flex-start}
+.price-features li i{margin-top:2px;flex-shrink:0}
+.price-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:14px 24px;border-radius:14px;font-size:15px;text-decoration:none;transition:all .3s;margin-top:auto}
+.price-btn.dark{background:var(--slate-900);color:#fff}
+.price-btn.dark:hover{background:var(--orange)}
+.price-btn.orange{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 8px 24px rgba(249,115,22,.3)}
+.price-btn.orange:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(249,115,22,.45)}
+.price-btn.purple{background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;box-shadow:0 8px 24px rgba(139,92,246,.25)}
+.price-btn.purple:hover{transform:translateY(-2px)}
+.save-tag{background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:8px 12px;font-size:13px;color:var(--orange-dark);font-weight:600}
+@media(max-width:900px){.pricing-grid{grid-template-columns:1fr}.price-card.featured{transform:none}}
+
+/* FOOTER */
+.footer{background:var(--slate-900);color:var(--slate-400);position:relative}
+.footer::before{content:'';display:block;height:1px;background:linear-gradient(to right,transparent,rgba(249,115,22,.4),transparent)}
+.footer-container{max-width:1280px;margin:0 auto;padding:64px 24px 32px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.5fr;gap:48px;margin-bottom:48px}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.footer-brand span{font-size:18px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.footer-brand .fox{color:var(--orange)}
+.footer-desc{font-size:14px;line-height:1.7;margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:36px;height:36px;border-radius:10px;background:var(--slate-800);display:flex;align-items:center;justify-content:center;color:var(--slate-400);font-size:14px;transition:all .2s}
+.footer-social a:hover{background:var(--orange);color:#fff}
+.footer-heading{font-size:13px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.footer-links li{margin-bottom:12px}
+.footer-links a{font-size:14px;color:var(--slate-400);transition:color .2s}
+.footer-links a:hover{color:var(--orange)}
+.footer-contact li{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;font-size:14px}
+.footer-contact li i{color:var(--orange);margin-top:3px;font-size:14px;width:16px}
+.footer-contact a{color:var(--slate-400);transition:color .2s}
+.footer-contact a:hover{color:#fff}
+.footer-bottom{border-top:1px solid var(--slate-800);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
+
+/* MISC */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:1000;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 8px 24px rgba(37,211,102,.3);transition:all .3s}
+.wa-float:hover{transform:translateY(-4px) scale(1.05)}
+.scroll-top{position:fixed;bottom:96px;right:24px;z-index:1000;width:44px;height:44px;border-radius:50%;background:var(--slate-800);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,.15);opacity:0;pointer-events:none;transition:all .3s}
+.scroll-top.visible{opacity:1;pointer-events:auto}
+.scroll-top:hover{background:var(--orange)}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.btn-secondary{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--slate-800);font-weight:700;padding:14px 28px;border-radius:14px;font-size:16px;border:2px solid var(--slate-200);transition:all .3s}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="./index.html" class="nav-logo">
+      <img src="Untitled (4).png" alt="Agentic Fox Labs" onerror="this.style.display='none'">
+      <div class="nav-logo-text">
+        <span class="brand">Agentic Fox Labs</span>
+        <span class="tag">AI-Powered Solutions</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="./index.html">Home</a>
+      <a href="./Shunya.html" class="active">Shunya AI</a>
+      <a href="./products.html">Products</a>
+      <a href="./pricing.html">Pricing</a>
+      <a href="./whyus.html">Why Us</a>
+      <a href="./demo.html" class="nav-cta">Book Free Demo</a>
+    </div>
+    <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="./index.html"><i class="fa-solid fa-home"></i> Home</a>
+  <a href="./Shunya.html" class="active"><i class="fa-solid fa-robot"></i> Shunya AI</a>
+  <a href="./products.html"><i class="fa-solid fa-grid-2"></i> Products</a>
+  <a href="./pricing.html"><i class="fa-solid fa-tag"></i> Pricing</a>
+  <a href="./whyus.html"><i class="fa-solid fa-star"></i> Why Us</a>
+  <a href="./demo.html" class="mobile-cta"><i class="fa-solid fa-calendar-check"></i> Book Free Demo</a>
+</div>
+
+<!-- HERO -->
+<section class="shunya-hero">
+  <div class="shunya-hero-grid">
+    <div>
+      <div class="hero-eyebrow"><span class="dot"></span> AI Interview &amp; Meeting Copilot</div>
+      <h1>Your <span class="hl">Invisible AI Brain</span><br>for Every Meeting</h1>
+      <p class="hero-sub">Shunya listens to your calls, interviews, and sales meetings — and whispers the perfect answer right on your screen. Invisible to others. Powerful for you.</p>
+
+      <div class="use-cases">
+        <span class="uc-pill active-pill"><i class="fa-solid fa-microphone"></i> Interviews</span>
+        <span class="uc-pill"><i class="fa-solid fa-handshake"></i> Sales Calls</span>
+        <span class="uc-pill"><i class="fa-solid fa-users"></i> Team Meetings</span>
+        <span class="uc-pill"><i class="fa-solid fa-graduation-cap"></i> Online Classes</span>
+      </div>
+
+      <div class="hero-btns">
+        <a href="#download" class="btn-primary"><i class="fa-solid fa-download"></i> Download Free</a>
+        <a href="#pricing" class="btn-ghost"><i class="fa-solid fa-key"></i> Get License</a>
+      </div>
+
+      <div class="hero-trust">
+        <span class="hero-trust-item"><i class="fa-solid fa-shield-check"></i> Invisible overlay</span>
+        <span class="hero-trust-item"><i class="fa-solid fa-lock"></i> BYOK — your data stays yours</span>
+        <span class="hero-trust-item"><i class="fa-solid fa-bolt"></i> &lt;2s response</span>
+      </div>
+    </div>
+
+    <!-- HERO REAL SCREENSHOTS — TOP TO BOTTOM -->
+    <div class="hero-visual-wrap reveal">
+      <div class="mockup-badge"><i class="fa-solid fa-circle" style="font-size:8px"></i> Real App Screenshots</div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Image 1 — Overlay (shunya2) -->
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);border:2px solid rgba(249,115,22,.35);position:relative">
+          <img src="./shunya2.png" alt="Shunya AI — Stealth Overlay Mode" style="width:100%;display:block">
+          <div style="position:absolute;bottom:10px;left:12px;background:rgba(249,115,22,.9);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px">🔴 Overlay Mode</div>
+        </div>
+
+        <!-- Image 2 — Dashboard (shunya1) -->
+        <div style="border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08);position:relative">
+          <img src="./shunya1.png" alt="Shunya AI — Dashboard" style="width:100%;display:block">
+          <div style="position:absolute;bottom:10px;left:12px;background:rgba(139,92,246,.9);backdrop-filter:blur(8px);color:#fff;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px">⚡ Dashboard</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="section">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow"><i class="fa-solid fa-sitemap"></i> Who It's For</span>
+      <h2 class="section-title">One Tool, <span class="gradient-text">Four Workflows</span></h2>
+      <p class="section-desc">Shunya adapts to your context — whether you're cracking an interview, closing a deal, or running a team standup.</p>
+    </div>
+    <div class="usecase-grid reveal">
+      <div class="usecase-card">
+        <div class="usecase-icon">🎯</div>
+        <h3>AI Interview Copilot</h3>
+        <p>Shunya listens to the interviewer's question via your mic or system audio, and instantly shows you a structured answer on your screen. Only you can see it.</p>
+        <span class="usecase-tag"><i class="fa-solid fa-user-tie"></i> For job seekers &amp; freshers</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">💼</div>
+        <h3>Sales Meeting Intelligence</h3>
+        <p>Get real-time objection handling, pricing guidance, and product pitch suggestions as your prospect talks. Close faster, miss nothing.</p>
+        <span class="usecase-tag"><i class="fa-solid fa-chart-line"></i> For sales &amp; BD teams</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">👥</div>
+        <h3>Remote Team Assistant</h3>
+        <p>Running a standup or sprint review? Shunya captures key points, suggests action items, and keeps you sharp in front of your team — every time.</p>
+        <span class="usecase-tag"><i class="fa-solid fa-laptop-house"></i> For remote &amp; hybrid teams</span>
+      </div>
+      <div class="usecase-card">
+        <div class="usecase-icon">🧠</div>
+        <h3>AI Meeting Brain for Indian Teams</h3>
+        <p>Built with Indian professionals in mind. Works perfectly with Google Meet, Zoom, MS Teams, and even phone calls via system audio capture.</p>
+        <span class="usecase-tag"><i class="fa-solid fa-flag"></i> Made for Bharat</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-alt">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Features</span>
+      <h2 class="section-title">Everything You Need, <span class="gradient-text">Nothing You Don't</span></h2>
+      <p class="section-desc">Lightweight, private, blazing fast — built with Tauri (Rust) so it barely touches your RAM.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#ffedd5;color:var(--orange)"><i class="fa-solid fa-ghost"></i></div>
+        <h3>Stealth Overlay Mode</h3>
+        <p>Toggle a transparent floating panel with <kbd>Ctrl+\</kbd>. It's invisible in screen shares. Your secret weapon — literally.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#dcfce7;color:var(--green)"><i class="fa-solid fa-microphone-lines"></i></div>
+        <h3>Voice-to-AI (Whisper)</h3>
+        <p>Speak or let system audio flow in — Shunya transcribes and sends it to AI instantly. Ask questions without typing a single word.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#dbeafe;color:var(--blue)"><i class="fa-solid fa-camera-viewfinder"></i></div>
+        <h3>Screenshot + Ask</h3>
+        <p>Press <kbd>Ctrl+Shift+S</kbd> to screenshot anything on screen — a problem, a chart, a diagram — and ask Shunya to explain it.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#f3e8ff;color:var(--purple)"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Multi-Model AI (BYOK)</h3>
+        <p>Use Groq (free, ultra-fast), Gemini, OpenAI, or Claude. Bring your own API key — no extra AI subscription fees ever.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#fee2e2;color:#ef4444"><i class="fa-solid fa-eye-slash"></i></div>
+        <h3>100% Private</h3>
+        <p>Your prompts go directly to your AI provider. We don't store, log, or see your conversations. Zero server-side tracking.</p>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-icon" style="background:#fef9c3;color:#eab308"><i class="fa-solid fa-feather-pointed"></i></div>
+        <h3>Featherlight App</h3>
+        <p>Built with Rust/Tauri — not Electron. Uses &lt;80MB RAM. Launches in under a second. Your laptop won't even notice it's there.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" style="padding:100px 24px;background:linear-gradient(160deg,#0f172a 0%,#1a1f2e 50%,#0f172a 100%);position:relative;overflow:hidden">
+  <!-- bg glow blobs -->
+  <div style="position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(249,115,22,.12) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(139,92,246,.07) 0%,transparent 70%);pointer-events:none"></div>
+
+  <div style="max-width:1280px;margin:0 auto;position:relative;z-index:2">
+
+    <!-- Header -->
+    <div class="reveal" style="text-align:center;margin-bottom:64px">
+      <span style="display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:600;background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.3);margin-bottom:20px">
+        <i class="fa-solid fa-download"></i> Free Download
+      </span>
+      <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px">
+        Your AI Copilot, <span style="background:linear-gradient(135deg,#f97316,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent">One Click Away</span>
+      </h2>
+      <p style="font-size:18px;color:#64748b;max-width:520px;margin:0 auto;line-height:1.6">No subscription to start. Download, install in 30 seconds, add your free API key — you're live.</p>
+    </div>
+
+    <!-- Platform cards -->
+    <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto 56px">
+
+      <!-- Windows card -->
+      <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;align-items:center;gap:20px;transition:all .3s;position:relative;overflow:hidden"
+           onmouseover="this.style.background='rgba(249,115,22,.07)';this.style.borderColor='rgba(249,115,22,.35)'"
+           onmouseout="this.style.background='rgba(255,255,255,.04)';this.style.borderColor='rgba(255,255,255,.08)'">
+        <!-- Glow on hover inner -->
+        <div style="position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(59,130,246,.15),transparent 70%);pointer-events:none"></div>
+
+        <!-- Windows icon with ring -->
+        <div style="position:relative">
+          <div style="width:80px;height:80px;border-radius:22px;background:linear-gradient(135deg,#1e40af,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:38px;color:#fff;box-shadow:0 12px 32px rgba(59,130,246,.4)">
+            <i class="fa-brands fa-windows"></i>
+          </div>
+          <div style="position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;background:#22c55e;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #0f172a">
+            <i class="fa-solid fa-check" style="font-size:9px;color:#fff"></i>
+          </div>
+        </div>
+
+        <div style="text-align:center">
+          <h3 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Windows</h3>
+          <p style="font-size:13px;color:#475569">Windows 10 / 11 &bull; 64-bit</p>
+        </div>
+
+        <!-- Version + size badges -->
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px">v1.0.0</span>
+          <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px">~10 MB</span>
+          <span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#4ade80;font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px">Free</span>
+        </div>
+
+        <!-- Includes list -->
+        <div style="width:100%;background:rgba(0,0,0,.2);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#94a3b8"><i class="fa-solid fa-box-archive" style="color:#f97316;font-size:11px;width:14px"></i> Shunya-AI-Setup.exe</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#94a3b8"><i class="fa-solid fa-file-lines" style="color:#f97316;font-size:11px;width:14px"></i> SETUP_GUIDE.txt (included)</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#94a3b8"><i class="fa-solid fa-shield-check" style="color:#22c55e;font-size:11px;width:14px"></i> Clean build — no bloatware</div>
+        </div>
+
+        <a href="./downloads/Shunya-AI-Setup.zip" download="Shunya-AI-Setup.zip"
+           style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:linear-gradient(135deg,#f97316,#ea580c);color:#fff;font-weight:800;padding:16px 24px;border-radius:14px;font-size:16px;text-decoration:none;box-shadow:0 8px 28px rgba(249,115,22,.4);transition:all .3s"
+           onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 36px rgba(249,115,22,.55)'"
+           onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 28px rgba(249,115,22,.4)'">
+          <i class="fa-solid fa-download"></i> Download for Windows
+        </a>
+
+        <p style="font-size:12px;color:#334155;text-align:center;line-height:1.6">ZIP contains .exe + Setup Guide<br>Extract &rarr; Run installer &rarr; Done ✅</p>
+      </div>
+
+      <!-- macOS card -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;align-items:center;gap:20px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-60px;right:-60px;width:180px;height:180px;background:radial-gradient(circle,rgba(148,163,184,.06),transparent 70%);pointer-events:none"></div>
+
+        <!-- macOS icon -->
+        <div style="position:relative">
+          <div style="width:80px;height:80px;border-radius:22px;background:linear-gradient(135deg,#334155,#1e293b);display:flex;align-items:center;justify-content:center;font-size:38px;color:#94a3b8;box-shadow:0 12px 32px rgba(0,0,0,.4)">
+            <i class="fa-brands fa-apple"></i>
+          </div>
+          <div style="position:absolute;bottom:-4px;right:-4px;width:22px;height:22px;background:#f59e0b;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #0f172a">
+            <i class="fa-solid fa-clock" style="font-size:9px;color:#fff"></i>
+          </div>
+        </div>
+
+        <div style="text-align:center">
+          <h3 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">macOS</h3>
+          <p style="font-size:13px;color:#475569">macOS 12+ Monterey &bull; Apple Silicon / Intel</p>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+          <span style="background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fbbf24;font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px">Coming Soon</span>
+          <span style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#94a3b8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:30px">.dmg Installer</span>
+        </div>
+
+        <div style="width:100%;background:rgba(0,0,0,.2);border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#64748b"><i class="fa-solid fa-circle-notch fa-spin" style="color:#f59e0b;font-size:11px;width:14px"></i> .dmg installer in development</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#64748b"><i class="fa-solid fa-check" style="color:#22c55e;font-size:11px;width:14px"></i> Apple Silicon (M1/M2/M3) supported</div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#64748b"><i class="fa-solid fa-check" style="color:#22c55e;font-size:11px;width:14px"></i> Get early access via WhatsApp</div>
+        </div>
+
+        <a href="https://wa.me/919452200700?text=Hi%20I%20want%20early%20access%20to%20Shunya%20AI%20for%20macOS" target="_blank" rel="noopener noreferrer"
+           style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:12px;background:rgba(255,255,255,.06);color:#e2e8f0;font-weight:800;padding:16px 24px;border-radius:14px;font-size:16px;text-decoration:none;border:1px solid rgba(255,255,255,.12);transition:all .3s"
+           onmouseover="this.style.background='rgba(37,211,102,.12)';this.style.borderColor='rgba(37,211,102,.3)';this.style.color='#4ade80'"
+           onmouseout="this.style.background='rgba(255,255,255,.06)';this.style.borderColor='rgba(255,255,255,.12)';this.style.color='#e2e8f0'">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366;font-size:18px"></i> Get Mac Early Access
+        </a>
+        <p style="font-size:12px;color:#334155;text-align:center">We'll notify you the moment .dmg drops</p>
+      </div>
+    </div>
+
+    <!-- Bottom trust row -->
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:32px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.06);padding-top:40px;max-width:860px;margin:0 auto">
+      <div style="display:flex;align-items:center;gap:10px;color:#475569;font-size:13px;font-weight:600">
+        <i class="fa-solid fa-shield-halved" style="color:#f97316;font-size:18px"></i>
+        <span>No spyware. Clean build.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:#475569;font-size:13px;font-weight:600">
+        <i class="fa-solid fa-memory" style="color:#f97316;font-size:18px"></i>
+        <span>Under 80MB RAM usage</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:#475569;font-size:13px;font-weight:600">
+        <i class="fa-solid fa-bolt" style="color:#f97316;font-size:18px"></i>
+        <span>Launches in &lt;1 second</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;color:#475569;font-size:13px;font-weight:600">
+        <i class="fa-solid fa-rotate" style="color:#f97316;font-size:18px"></i>
+        <span>Auto model updates</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SETUP GUIDE -->
+<section class="section section-alt" id="setup">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Quick Start</span>
+      <h2 class="section-title">Up &amp; Running in <span class="gradient-text">4 Steps</span></h2>
+      <p class="section-desc">Download, activate, add your free API key, and you're live — under 3 minutes.</p>
+    </div>
+    <div class="steps-container">
+
+      <div class="step-item reveal">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Download &amp; Install</h3>
+          <p>Click Download above. Run <strong>Shunya-AI-Setup.exe</strong> and follow the installer — done in 30 seconds.</p>
+
+        </div>
+      </div>
+
+      <div class="step-item reveal">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Buy License → Check Email</h3>
+          <p>Pick any plan below. Your license key (format: <strong>SHUNYA-XXXX-XXXX-XXXX-XXXX</strong>) arrives in your inbox instantly.</p>
+          <div class="info-box green">
+            <i class="fa-solid fa-envelope-open-text" style="color:#16a34a;margin-top:3px;font-size:16px;flex-shrink:0"></i>
+            <div>
+              <strong style="color:#15803d;font-size:14px">Activate in the app</strong>
+              <p style="font-size:13px;color:#166534;margin-top:4px;line-height:1.7">Open Shunya → <strong>Settings ⚙️</strong> → <strong>Shunya API / License</strong> → Paste key → <strong>Activate</strong>. First activation may take 30–40s (server wakeup).</p>
+            </div>
+          </div>
+          <a href="#pricing" class="btn-primary" style="font-size:14px;padding:10px 20px;margin-top:14px;display:inline-flex">
+            <i class="fa-solid fa-key"></i> View Plans &amp; Buy
+          </a>
+        </div>
+      </div>
+
+      <div class="step-item reveal">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Add Your Free AI Key</h3>
+          <p>Shunya uses <strong>BYOK</strong> — use your own free Groq or Gemini key. No extra AI subscription charges.</p>
+          <div class="info-box blue">
+            <i class="fa-solid fa-screwdriver-wrench" style="color:#2563eb;margin-top:3px;font-size:16px;flex-shrink:0"></i>
+            <div>
+              <strong style="color:#1d4ed8;font-size:14px">Settings → AI Providers → Select Groq → Paste API key → Save</strong>
+              <ol style="font-size:13px;color:#1e40af;margin-top:8px;padding-left:18px;line-height:2.1">
+                <li>Same Groq key works for Voice (Speech → Groq Whisper) too</li>
+                <li>Get free Groq key: <a href="https://console.groq.com/keys" target="_blank" style="color:var(--orange);font-weight:700">console.groq.com/keys</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item reveal">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#16a34a);font-size:20px">✓</div>
+        <div class="step-content">
+          <h3>You're Live! 🎉</h3>
+          <p>Start a meeting, open Shunya, and toggle the overlay. The first response may take 10–15s while the server wakes up — totally normal after that!</p>
+          <div class="shortcuts-box">
+            <p style="font-size:13px;color:var(--slate-600);font-weight:600"><i class="fa-solid fa-keyboard" style="color:var(--orange);margin-right:6px"></i>Essential Shortcuts</p>
+            <div class="shortcuts-grid">
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+\</kbd> Toggle Overlay</span>
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+Shift+D</kbd> Dashboard</span>
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+Shift+A</kbd> Voice Input</span>
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+Shift+S</kbd> Screenshot</span>
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+Shift+M</kbd> System Audio</span>
+              <span style="font-size:12px;color:var(--slate-500)"><kbd>Ctrl+Shift+F</kbd> Global Search</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="section-container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow"><i class="fa-solid fa-key"></i> Get Your License</span>
+      <h2 class="section-title">Simple, <span class="gradient-text">Honest Pricing</span></h2>
+      <p class="section-desc">License key delivered instantly to your email. Cancel monthly anytime. No hidden fees.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+
+      <!-- MONTHLY -->
+      <div class="price-card">
+        <div class="price-label" style="color:var(--slate-500)">Monthly</div>
+        <div class="price-amount">
+          <span class="currency">₹</span>
+          <span class="amount">199</span>
+          <span class="period">/month</span>
+        </div>
+        <p style="font-size:14px;color:var(--slate-500);line-height:1.6">Try it out. Cancel anytime.</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Stealth Overlay Mode</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> All AI Providers (Groq, Gemini, OpenAI)</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Voice-to-AI (Whisper)</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Screenshot + Ask</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> 1 PC Machine License</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Email Support</li>
+        </ul>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NfnfFw0MHh9qRzxq4OGt?quantity=1" target="_blank" rel="noopener noreferrer" class="price-btn dark">
+          <i class="fa-solid fa-credit-card"></i> Buy Monthly
+        </a>
+      </div>
+
+      <!-- YEARLY -->
+      <div class="price-card featured">
+        <div class="price-badge" style="background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;box-shadow:0 4px 12px rgba(249,115,22,.35)">⭐ MOST POPULAR</div>
+        <div class="price-label" style="color:var(--orange)">Yearly</div>
+        <div class="price-amount">
+          <span class="currency">₹</span>
+          <span class="amount">999</span>
+          <span class="period">/year</span>
+        </div>
+        <div class="save-tag">🎉 Save 58% vs Monthly</div>
+        <p style="font-size:14px;color:var(--slate-500);line-height:1.6">Full year, one payment. Best value.</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Everything in Monthly</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Priority Email Support</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Early Access to New Features</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> WhatsApp Support</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> 1 PC Machine License</li>
+        </ul>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0Nfnj96RQlTlk5GJZ4QPp?quantity=1" target="_blank" rel="noopener noreferrer" class="price-btn orange">
+          <i class="fa-solid fa-crown"></i> Buy Yearly — Best Value
+        </a>
+      </div>
+
+      <!-- LIFETIME -->
+      <div class="price-card lifetime">
+        <div class="price-badge" style="background:linear-gradient(135deg,var(--purple),#7c3aed);color:#fff;left:auto;right:24px;transform:none">🔥 ONE-TIME</div>
+        <div class="price-label" style="color:var(--purple)">Lifetime</div>
+        <div class="price-amount">
+          <span class="currency">₹</span>
+          <span class="amount">1,499</span>
+          <span class="period">once</span>
+        </div>
+        <p style="font-size:14px;color:var(--slate-500);line-height:1.6">Pay once. Use forever. Never pay again.</p>
+        <ul class="price-features">
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Everything in Yearly</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> Lifetime Updates</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> No Recurring Charges — Ever</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> VIP WhatsApp Support</li>
+          <li><i class="fa-solid fa-check" style="color:var(--green)"></i> 1 PC Machine License</li>
+        </ul>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NfnjeH0erujiwgU3Q5YI?quantity=1" target="_blank" rel="noopener noreferrer" class="price-btn purple">
+          <i class="fa-solid fa-infinity"></i> Buy Lifetime
+        </a>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:40px">
+      <p style="font-size:14px;color:var(--slate-500);display:inline-flex;align-items:center;gap:8px;background:var(--slate-50);padding:12px 24px;border-radius:30px;border:1px solid var(--slate-200)">
+        <i class="fa-solid fa-shield-check" style="color:var(--orange)"></i>
+        Secure checkout via Dodo Payments &bull; License delivered instantly to email &bull; 7-day refund policy
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span>Agentic <span class="fox">Fox</span> Labs</span>
+        </div>
+        <p class="footer-desc">AI-powered tools for the modern Indian professional. Automate, scale, and grow with confidence.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.instagram.com/agenticfoxlabs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/116364441/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Shunya AI</h4>
+        <ul class="footer-links">
+          <li><a href="#download">Download</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#setup">Setup Guide</a></li>
+          <li><a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer">Get Free Groq Key ↗</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Company</h4>
+        <ul class="footer-links">
+          <li><a href="./products.html">All Products</a></li>
+          <li><a href="./whyus.html">Why Us</a></li>
+          <li><a href="./pricing.html">ERP Pricing</a></li>
+          <li><a href="./demo.html">Book a Demo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Need Help?</h4>
+        <ul class="footer-contact">
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:admin@agenticfoxlabs.com">admin@agenticfoxlabs.com</a></li>
+          <li><i class="fa-brands fa-whatsapp"></i><a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer">+91 94522 00700</a></li>
+          <li><i class="fa-solid fa-location-dot"></i><span>Lucknow, India — 226017</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="currentYear"></span> Agentic Fox Labs. All rights reserved.</p>
+      <p style="color:var(--slate-600)">Made with ❤️ in Lucknow 🇮🇳</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/919452200700" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)},{passive:true});
+
+// Scroll to top
+const stb=document.getElementById('scrollTopBtn');
+window.addEventListener('scroll',()=>{stb.classList.toggle('visible',window.scrollY>500)},{passive:true});
+stb.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+// Year
+document.getElementById('currentYear').textContent=new Date().getFullYear();
+
+// Mobile menu
+document.getElementById('mobileMenuBtn').onclick=function(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+};
+
+// Use case pill toggle (decorative)
+document.querySelectorAll('.uc-pill').forEach(pill=>{
+  pill.onclick=()=>{
+    document.querySelectorAll('.uc-pill').forEach(p=>p.classList.remove('active-pill'));
+    pill.classList.add('active-pill');
+  };
+});
+
+// Reveal on scroll
+const revealElements=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
+  });
+},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+revealElements.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
