@@ -31,7 +31,7 @@
         suggestions.push(group.reply);
       }
     }
-    return suggestions.slice(0, 3); // Max 3 suggestions
+    return suggestions.slice(0, 3);
   }
 
   // ── Conversation History ───────────────────────────────────────
@@ -39,7 +39,8 @@
     try {
       const stored = sessionStorage.getItem('foxChatHistory');
       if (stored) {
-        conversationHistory = JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) conversationHistory = parsed;
       }
     } catch (e) {
       conversationHistory = [];
@@ -48,22 +49,23 @@
 
   function saveHistory() {
     try {
-      // Keep only last MAX_HISTORY messages
       if (conversationHistory.length > MAX_HISTORY) {
         conversationHistory = conversationHistory.slice(-MAX_HISTORY);
       }
       sessionStorage.setItem('foxChatHistory', JSON.stringify(conversationHistory));
     } catch (e) {
-      // sessionStorage might be full, ignore
+      // sessionStorage might be full or blocked
     }
   }
 
   function addToHistory(role, text) {
-    conversationHistory.push({ role: role, content: text, timestamp: Date.now() });
+    // Store 'assistant' instead of 'bot' for LLM compatibility
+    const normalizedRole = role === 'user' ? 'user' : 'assistant';
+    conversationHistory.push({ role: normalizedRole, content: text, timestamp: Date.now() });
     saveHistory();
   }
 
-  // ── Timestamp Formatting ───────────────────────────────────────
+  // ── Timestamp & Formatting Helpers ─────────────────────────────
   function formatTime(ts) {
     const d = new Date(ts);
     const h = d.getHours();
@@ -73,10 +75,19 @@
     return h12 + ':' + (m < 10 ? '0' : '') + m + ' ' + ampm;
   }
 
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
   // ── ARIA Live Region ───────────────────────────────────────────
   function ensureAriaLive() {
     let region = document.getElementById('foxAriaLive');
-    if (!region) {
+    if (!region && document.body) {
       region = document.createElement('div');
       region.id = 'foxAriaLive';
       region.setAttribute('role', 'status');
@@ -90,6 +101,7 @@
 
   function announceMessage(text) {
     const region = ensureAriaLive();
+    if (!region) return;
     region.textContent = '';
     setTimeout(() => { region.textContent = text; }, 100);
   }
@@ -106,9 +118,10 @@
       wrapper.innerHTML =
         '<div class="fox-typing-dots"><span></span><span></span><span></span></div>';
     } else {
-      const nr = new RegExp('\\n', 'g');
-      const br = new RegExp('\\*\\*(.*?)\\*\\*', 'g');
-      const formattedText = text.replace(nr, '<br>').replace(br, '<strong>$1</strong>');
+      const safeText = escapeHtml(text);
+      const formattedText = safeText
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       const timeStr = timestamp ? formatTime(timestamp) : formatTime(Date.now());
 
       wrapper.innerHTML =
@@ -131,14 +144,15 @@
 
     suggestions.forEach(text => {
       const btn = document.createElement('button');
+      btn.type = 'button';
       btn.className = 'fox-quick-btn';
       btn.textContent = text;
-      btn.onclick = () => foxQuickSend(text);
+      btn.onclick = () => window.foxQuickSend(text);
       container.appendChild(btn);
     });
   }
 
-  // ── Toggle Chat ────────────────────────────────────────────────
+  // ── Toggle & Close Chat ────────────────────────────────────────
   function toggleChat() {
     foxOpen = !foxOpen;
     const chatWindow = document.getElementById('foxChatWindow');
@@ -153,19 +167,22 @@
       const notif = document.querySelector('.fox-notif');
       if (notif) notif.style.display = 'none';
 
-      // GA4 tracking
       if (typeof gtag === 'function') {
         gtag('event', 'chat_opened', { source: 'floating_button' });
       }
     }
   }
 
-  // ── Close Chat ─────────────────────────────────────────────────
   function closeChat() {
     foxOpen = false;
     const chatWindow = document.getElementById('foxChatWindow');
     if (chatWindow) chatWindow.classList.remove('open');
   }
+
+  // Expose to window in case HTML uses inline onclick attributes
+  window.foxToggleChat = toggleChat;
+  window.foxCloseChat = closeChat;
+  window.foxSendMessage = foxSendMessage;
 
   // ── Quick Send ─────────────────────────────────────────────────
   window.foxQuickSend = function (msg) {
@@ -189,6 +206,12 @@
     input.value = '';
     input.style.height = 'auto';
 
+    // Snapshot previous history BEFORE adding current user message
+    const apiHistory = conversationHistory.slice(-MAX_HISTORY).map(m => ({
+      role: m.role === 'user' ? 'user' : 'assistant',
+      content: m.content
+    }));
+
     const now = Date.now();
     foxAddMsg(msg, 'user', now);
     addToHistory('user', msg);
@@ -200,13 +223,6 @@
 
     const typingEl = foxAddMsg('', 'typing');
 
-    // Build message history for API
-    const apiHistory = conversationHistory.slice(-MAX_HISTORY).map(m => ({
-      role: m.role,
-      content: m.content
-    }));
-
-    // Create AbortController for timeout
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
 
@@ -223,21 +239,20 @@
 
       clearTimeout(timeoutId);
 
-      if (!res.ok) {
-        throw new Error('HTTP ' + res.status);
-      }
+      const data = await res.json().catch(() => ({}));
 
-      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'HTTP ' + res.status);
+      }
 
       if (typingEl && typingEl.parentNode) typingEl.remove();
 
       const reply = data.reply || 'System encountered an anomaly. Please try again.';
       const replyTime = Date.now();
       foxAddMsg(reply, 'bot', replyTime);
-      addToHistory('bot', reply);
+      addToHistory('assistant', reply);
       announceMessage('Fox AI: ' + reply);
 
-      // Show suggested replies based on bot response
       const suggestions = getSuggestedReplies(msg);
       if (suggestions.length) {
         showSuggestions(suggestions);
@@ -245,6 +260,7 @@
 
     } catch (err) {
       clearTimeout(timeoutId);
+      console.error('Fox AI Chat Error:', err);
 
       if (typingEl && typingEl.parentNode) typingEl.remove();
 
@@ -254,13 +270,12 @@
       }
 
       foxAddMsg(errorMsg, 'bot', Date.now());
-      addToHistory('bot', errorMsg);
       announceMessage('Fox AI: ' + errorMsg);
+    } finally {
+      foxTyping = false;
+      if (sendBtn) sendBtn.disabled = false;
+      if (input) input.focus();
     }
-
-    foxTyping = false;
-    if (sendBtn) sendBtn.disabled = false;
-    if (input) input.focus();
   }
 
   // ── Restore History on Load ────────────────────────────────────
@@ -270,7 +285,6 @@
       const msgs = document.getElementById('foxMessages');
       if (!msgs) return;
 
-      // Show last few messages from history
       const recent = conversationHistory.slice(-6);
       recent.forEach(m => {
         foxAddMsg(m.content, m.role === 'user' ? 'user' : 'bot', m.timestamp);
@@ -279,7 +293,7 @@
   }
 
   // ── Init ───────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
+  function initFoxChatbot() {
     const chatBtn = document.getElementById('foxChatBtn');
     const closeBtn = document.getElementById('foxCloseBtn');
     const sendBtn = document.getElementById('foxSendBtn');
@@ -303,11 +317,14 @@
       });
     }
 
-    // Restore conversation history from sessionStorage
     restoreHistory();
-
-    // Ensure ARIA live region exists
     ensureAriaLive();
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFoxChatbot);
+  } else {
+    initFoxChatbot();
+  }
 
 })();
