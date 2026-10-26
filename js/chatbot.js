@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  const CHAT_API_URL = 'https://agentic-fox-worker.abhaypawan01.workers.dev/api/chat';
+  const CHAT_API_URL = 'https://chat-api.agenticfoxlabs.com/api/chat';
   const REQUEST_TIMEOUT = 15000; // 15 seconds
   const MAX_HISTORY = 10; // Last 10 messages stored in sessionStorage
 
